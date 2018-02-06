@@ -5,9 +5,6 @@ namespace app\components;
 
 use Yii;
 use yii\web\View;
-use app\components\helpers\Image;
-use app\components\helpers\Audio;
-use app\components\helpers\Video;
 
 /**
  *
@@ -15,11 +12,17 @@ use app\components\helpers\Video;
  * If need use only basic data - just register in current class
  * If need more your can create own and register here
  *
- * @property $opengraph \app\components\OpenGraph
  * @property OpenGraph optMetaData
- * @property Image image
- * @property Audio audio
- * @property Video video
+ * @property OpenGraph title
+ * @property OpenGraph description
+ * @property OpenGraph type
+ * @property OpenGraph url
+ * @property OpenGraph image
+ * @property OpenGraph audio
+ * @property OpenGraph locale
+ * @property OpenGraph site_name
+ * @property OpenGraph video
+ * @property OpenGraph music
  */
 class OpenGraph
 {
@@ -38,54 +41,45 @@ class OpenGraph
         'locale',
         'site_name',
         'video',
-        'audio'
+        'audio',
+        'music'
     ];
+
+    /**
+     * @var array
+     */
+    private $_components = [];
+
+    /**
+     * @var string $name
+     */
+    public function __get($name)
+    {
+        $this->_components[$name];
+    }
+
+    /**
+     * @param string $name
+     * @param string $value
+     */
+    public function __set($name, $value)
+    {
+        $this->_components[$name] = $value;
+    }
 
     public function __construct()
     {
-
-        $this->image = new Image;
-
-        $this->audio = new Audio;
-
-        $this->video = new Video;
-
         Yii::$app->view->on(
             View::EVENT_BEGIN_PAGE,
             function() {
-                $this->startLoadInView();
+                foreach ($this->_components as $key => $value) {
+                    $key = in_array($key,self::$_metadata) ? 'og:' . $key : $key;
+                    $this->registerOpenGraph($key, $value);
+                }
             }
         );
     }
 
-
-    protected function startLoadInView()
-    {
-        if (isset($this->image)) {
-            if($this->image->getMetaData()) {
-                foreach ($this->image->getMetaData() as $key => $value) {
-                    $this->registerOpenGraph('og:image'. ':' . $key, $value);
-                }
-            }
-        }
-
-        if (isset($this->audio)) {
-            if($this->audio->getMetaData()) {
-                foreach ($this->audio->getMetaData() as $key => $value) {
-                    $this->registerOpenGraph('og:audio'. ':' . $key, $value);
-                }
-            }
-        }
-
-
-        if (isset($this->video)) {
-            if($this->video->getMetaData()) {
-                foreach ($this->video->getMetaData() as $key => $value) {
-                    $this->registerOpenGraph('og:video'. ':' . $key, $value);
-                }
-            }
-        }
-    }
 
     /**
      * @param string $name
@@ -111,8 +105,6 @@ class OpenGraph
     */
     protected function registerOpenGraph(string $property, string $content)
     {
-        $property = str_replace(':src', '', $property);
-
         Yii::$app->view->registerMetaTag([
             'property' => $property,
             'content'  => $content
@@ -128,15 +120,18 @@ class OpenGraph
      * ]
      *
      * @param array $opt Set data array
+     * @param bool  $register Register new OG component
      * @throws \InvalidArgumentException
     */
-    public function optMetaData(array $opt)
+    public function optMetaData(array $opt, bool $register = false)
     {
         foreach ($opt as $key => $value) {
-            if(!in_array($key, self::$_metadata)) {
+            if(!in_array($key, self::$_metadata) && !$register) {
                 throw new \InvalidArgumentException('Invalid argument in array');
             }
-            $this->registerOpenGraph('og:' . $key, $value);
+
+            $key = $register ? $key : 'og:' . $key;
+            $this->_components[$key] = $value;
         }
     }
 
