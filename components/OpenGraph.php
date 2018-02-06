@@ -2,9 +2,11 @@
 
 namespace app\components;
 
-use app\components\helpers\Image;
+
 use Yii;
 use yii\web\View;
+use app\components\helpers\Image;
+use app\components\helpers\Audio;
 
 /**
  *
@@ -15,6 +17,7 @@ use yii\web\View;
  * @property $opengraph \app\components\OpenGraph
  * @property OpenGraph optMetaData
  * @property Image image
+ * @property Audio audio
  */
 class OpenGraph
 {
@@ -33,12 +36,15 @@ class OpenGraph
         'locale',
         'site_name',
         'video',
+        'audio'
     ];
 
     public function __construct()
     {
 
         $this->image = new Image;
+
+        $this->audio = new Audio;
 
         Yii::$app->view->on(
             View::EVENT_BEGIN_PAGE,
@@ -55,6 +61,14 @@ class OpenGraph
             if($this->image->getMetaData()) {
                 foreach ($this->image->getMetaData() as $key => $value) {
                     $this->registerOpenGraph('og:image'. ':' . $key, $value);
+                }
+            }
+        }
+
+        if (isset($this->audio)) {
+            if($this->audio->getMetaData()) {
+                foreach ($this->audio->getMetaData() as $key => $value) {
+                    $this->registerOpenGraph('og:audio'. ':' . $key, $value);
                 }
             }
         }
@@ -84,6 +98,8 @@ class OpenGraph
     */
     protected function registerOpenGraph(string $property, string $content)
     {
+        $property = str_replace(':src', '', $property);
+
         Yii::$app->view->registerMetaTag([
             'property' => $property,
             'content'  => $content
