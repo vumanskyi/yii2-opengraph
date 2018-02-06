@@ -1,6 +1,6 @@
 <?php
 
-namespace app\components;
+namespace umanskyi31\opengraph;
 
 
 use Yii;

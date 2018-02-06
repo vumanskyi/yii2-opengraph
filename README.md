@@ -1,5 +1,11 @@
 # yii2-opengraph
-Create component for yii2. Generate Open Graph protocol for website
+Create implementaion for Yii2. Generate Open Graph protocol for your website
 
 
-The component is still on the development
+###How it's to use?
+At first you need 
+
+```
+composer required umanskyi31/yi
+```
+
