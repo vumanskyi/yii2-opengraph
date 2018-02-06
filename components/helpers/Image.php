@@ -10,7 +10,7 @@ namespace app\components\helpers;
  * @property Image type
  * @property Image secure_url
 */
-class Image
+class Image implements Helper
 {
 
     /**
@@ -63,12 +63,24 @@ class Image
 
     /**
      * @param array $data
+     * @throws \InvalidArgumentException
      */
     public function setArray($data)
     {
+        foreach ($data as $key => $value) {
+            if(!in_array($key, $this->_metaData)) {
+                throw new \InvalidArgumentException('Invalid argument in array');
+            }
 
+            $this->_metaData[$key] = $value;
+        }
     }
 
+    /**
+     * Get all data
+     *
+     * @return array
+    */
     public function getMetaData()
     {
         return $this->_metaData;
