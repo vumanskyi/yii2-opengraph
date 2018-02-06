@@ -7,6 +7,7 @@ use Yii;
 use yii\web\View;
 use app\components\helpers\Image;
 use app\components\helpers\Audio;
+use app\components\helpers\Video;
 
 /**
  *
@@ -18,6 +19,7 @@ use app\components\helpers\Audio;
  * @property OpenGraph optMetaData
  * @property Image image
  * @property Audio audio
+ * @property Video video
  */
 class OpenGraph
 {
@@ -46,6 +48,8 @@ class OpenGraph
 
         $this->audio = new Audio;
 
+        $this->video = new Video;
+
         Yii::$app->view->on(
             View::EVENT_BEGIN_PAGE,
             function() {
@@ -69,6 +73,15 @@ class OpenGraph
             if($this->audio->getMetaData()) {
                 foreach ($this->audio->getMetaData() as $key => $value) {
                     $this->registerOpenGraph('og:audio'. ':' . $key, $value);
+                }
+            }
+        }
+
+
+        if (isset($this->video)) {
+            if($this->video->getMetaData()) {
+                foreach ($this->video->getMetaData() as $key => $value) {
+                    $this->registerOpenGraph('og:video'. ':' . $key, $value);
                 }
             }
         }
