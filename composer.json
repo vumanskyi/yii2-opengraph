@@ -1,7 +1,8 @@
 {
     "name": "umanskyi31/opengraph",
     "description": "Create implementation for Yii2. Generate Open Graph protocol for your website",
-    "keywords": ["yii2", "extension", "open-graph", "facebook", "twitter-card"],
+    "keywords": ["yii2", "extension", "open-graph", "facebook", "twitter-card", "seo"],
+    "homepage": "https://github.com/umanskyi31/yii2-opengraph",
     "type": "yii2-extension",
     "license": "MIT",
     "authors": [
@@ -12,8 +13,8 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "yiisoft/yii2": "@dev"
-    },
+        "yiisoft/yii2": "*"
+    }
     "autoload": {
         "psr-4": {
             "umanskyi31\\opengraph\\": ""
