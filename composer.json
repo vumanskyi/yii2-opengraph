@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "umanskyi31\\opengraph\\": ""
+            "umanskyi31\\opengraph\\": "src/"
         }
     }
 }
