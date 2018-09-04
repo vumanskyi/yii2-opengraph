@@ -2,15 +2,13 @@
 
 namespace umanskyi31\opengraph;
 
-
 use Yii;
 use yii\web\View;
 
 /**
- *
  * Class register all type of metadata for Open Graph
  * If need use only basic data - just register in current class
- * If need more your can create own and register here
+ * If need more your can create own and register here.
  *
  * @property OpenGraph optMetaData
  * @property OpenGraph title
@@ -27,7 +25,7 @@ use yii\web\View;
 class OpenGraph
 {
     /**
-     * Metadata basic
+     * Metadata basic.
      *
      * @var array
      */
@@ -42,7 +40,7 @@ class OpenGraph
         'site_name',
         'video',
         'audio',
-        'music'
+        'music',
     ];
 
     /**
@@ -51,7 +49,7 @@ class OpenGraph
     private $_components = [];
 
     /**
-     * @var string $name
+     * @var string
      */
     public function __get($name)
     {
@@ -71,43 +69,45 @@ class OpenGraph
     {
         Yii::$app->view->on(
             View::EVENT_BEGIN_PAGE,
-            function() {
+            function () {
                 foreach ($this->_components as $key => $value) {
-                    $key = in_array($key,self::$_metadata) ? 'og:' . $key : $key;
+                    $key = in_array($key, self::$_metadata) ? 'og:'.$key : $key;
                     $this->registerOpenGraph($key, $value);
                 }
             }
         );
     }
 
-
     /**
      * @param string $name
-     * @param array $params
-     * @return mixed
+     * @param array  $params
+     *
      * @throws \InvalidArgumentException
+     *
+     * @return mixed
      */
     public function __call($name, $params)
     {
-        if(!in_array($name, self::$_metadata)) {
+        if (!in_array($name, self::$_metadata)) {
             throw new \InvalidArgumentException('Not reserved value in params');
         }
 
-        $this->registerOpenGraph('og:' . $name, array_shift($params));
+        $this->registerOpenGraph('og:'.$name, array_shift($params));
     }
 
     /**
-     * Register new element of open graph
+     * Register new element of open graph.
      *
      * @param string $property Property for metadata
-     * @param mixed $content Content for metadata
+     * @param mixed  $content  Content for metadata
+     *
      * @throws \InvalidArgumentException
-    */
+     */
     protected function registerOpenGraph(string $property, string $content)
     {
         Yii::$app->view->registerMetaTag([
             'property' => $property,
-            'content'  => $content
+            'content'  => $content,
         ]);
     }
 
@@ -117,22 +117,22 @@ class OpenGraph
      * [
      *  'title'       => 'Lorem ipsum',
      *  'description' => 'lorem ipsum'
-     * ]
+     * ].
      *
-     * @param array $opt Set data array
+     * @param array $opt      Set data array
      * @param bool  $register Register new OG component
+     *
      * @throws \InvalidArgumentException
-    */
+     */
     public function optMetaData(array $opt, bool $register = false)
     {
         foreach ($opt as $key => $value) {
-            if(!in_array($key, self::$_metadata) && !$register) {
+            if (!in_array($key, self::$_metadata) && !$register) {
                 throw new \InvalidArgumentException('Invalid argument in array');
             }
 
-            $key = $register ? $key : 'og:' . $key;
+            $key = $register ? $key : 'og:'.$key;
             $this->_components[$key] = $value;
         }
     }
-
 }
