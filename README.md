@@ -36,7 +36,7 @@ You must add component to controller before rendering view.
 
 
 
-#### Usage like as object
+#### Use like object
 Component contain objects: ['title','type','url','image','description','audio','locale','site_name','video','audio','music']
 
 ```
@@ -48,7 +48,7 @@ Yii::$app->opengraph->video = 'http://example.com/bond/trailer.swf';
 
 ```  
 
-or like as function
+or like function
 
 ```
 Yii::$app->opengraph->title('My_Article_Title');
@@ -58,13 +58,13 @@ Yii::$app->opengraph->video('http://example.com/bond/trailer.swf');
 //etc...
 
 ``` 
-#### Usage as array
+#### Use like array
 
-Only like array, we can create component like as twitter card
+Only like array, we can create component like **twitter card**
 
 Example:
 
-if using default og
+if use default og
 ```
 Yii::$app->opengraph->optMetaData([
             'title' => 'My_Article_Title',
