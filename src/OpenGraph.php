@@ -1,138 +1,251 @@
 <?php
-
 namespace umanskyi31\opengraph;
 
-
+use umanskyi31\opengraph\Tags\Audio;
+use umanskyi31\opengraph\Tags\Image;
+use umanskyi31\opengraph\Tags\TwitterCard;
+use umanskyi31\opengraph\Tags\Video;
 use Yii;
-use yii\web\View;
 
-/**
- *
- * Class register all type of metadata for Open Graph
- * If need use only basic data - just register in current class
- * If need more your can create own and register here
- *
- * @property OpenGraph optMetaData
- * @property OpenGraph title
- * @property OpenGraph description
- * @property OpenGraph type
- * @property OpenGraph url
- * @property OpenGraph image
- * @property OpenGraph audio
- * @property OpenGraph locale
- * @property OpenGraph site_name
- * @property OpenGraph video
- * @property OpenGraph music
- */
 class OpenGraph
 {
     /**
-     * Metadata basic
-     *
+     * @var string
+     */
+    protected $title;
+
+    /**
+     * @var string
+     */
+    protected $type;
+
+    /**
+     * @var string
+     */
+    protected $url;
+
+    /**
+     * @var string
+     */
+    protected $description;
+
+    /**
+     * @var string
+     */
+    protected $determiner;
+
+    /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
      * @var array
      */
-    private static $_metadata = [
-        'title',
-        'type',
-        'url',
-        'image',
-        'description',
-        'audio',
-        'locale',
-        'site_name',
-        'video',
-        'audio',
-        'music'
-    ];
+    protected $localAlternate;
 
     /**
-     * @var array
+     * @var Image
      */
-    private $_components = [];
+    protected $image;
 
     /**
-     * @var string $name
+     * @var Video
      */
-    public function __get($name)
-    {
-        $this->_components[$name];
-    }
+    protected $video;
 
     /**
-     * @param string $name
-     * @param string $value
+     * @var Audio
      */
-    public function __set($name, $value)
-    {
-        $this->_components[$name] = $value;
-    }
-
-    public function __construct()
-    {
-        Yii::$app->view->on(
-            View::EVENT_BEGIN_PAGE,
-            function() {
-                foreach ($this->_components as $key => $value) {
-                    $key = in_array($key,self::$_metadata) ? 'og:' . $key : $key;
-                    $this->registerOpenGraph($key, $value);
-                }
-            }
-        );
-    }
-
+    protected $audio;
 
     /**
-     * @param string $name
-     * @param array $params
-     * @return mixed
-     * @throws \InvalidArgumentException
+     * @var TwitterCard
      */
-    public function __call($name, $params)
-    {
-        if(!in_array($name, self::$_metadata)) {
-            throw new \InvalidArgumentException('Not reserved value in params');
-        }
-
-        $this->registerOpenGraph('og:' . $name, array_shift($params));
-    }
+    protected $twitterCard;
 
     /**
-     * Register new element of open graph
+     * @param OpenGraph $url
      *
-     * @param string $property Property for metadata
-     * @param mixed $content Content for metadata
-     * @throws \InvalidArgumentException
-    */
-    protected function registerOpenGraph(string $property, string $content)
+     * @return OpenGraph
+     */
+    public function setUrl(OpenGraph $url): OpenGraph
     {
-        Yii::$app->view->registerMetaTag([
-            'property' => $property,
-            'content'  => $content
-        ]);
+        $this->url = $url;
+
+        return $this;
     }
 
     /**
-     * Set array for all metadata
-     * Example for use
-     * [
-     *  'title'       => 'Lorem ipsum',
-     *  'description' => 'lorem ipsum'
-     * ]
-     *
-     * @param array $opt Set data array
-     * @param bool  $register Register new OG component
-     * @throws \InvalidArgumentException
-    */
-    public function optMetaData(array $opt, bool $register = false)
+     * @return string
+     */
+    public function getUrl(): OpenGraph
     {
-        foreach ($opt as $key => $value) {
-            if(!in_array($key, self::$_metadata) && !$register) {
-                throw new \InvalidArgumentException('Invalid argument in array');
-            }
-
-            $key = $register ? $key : 'og:' . $key;
-            $this->_components[$key] = $value;
-        }
+        return $this->url;
     }
 
+    /**
+     * @param string $locale
+     *
+     * @return OpenGraph
+     */
+    public function setLocale(string $locale): OpenGraph
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale(): string
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param string $title
+     *
+     * @return OpenGraph
+     */
+    public function setTitle(string $title): OpenGraph
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return OpenGraph
+     */
+    public function setType(string $type): OpenGraph
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @param array $localAlternate
+     *
+     * @return OpenGraph
+     */
+    public function setLocalAlternate(array $localAlternate): OpenGraph
+    {
+        $this->localAlternate = $localAlternate;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLocalAlternate(): array
+    {
+        return $this->localAlternate;
+    }
+
+    /**
+     * @param string $description
+     *
+     * @return OpenGraph
+     */
+    public function setDescription(string $description): OpenGraph
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeterminer(): string
+    {
+        return $this->determiner;
+    }
+
+    /**
+     * @param string $determiner
+     *
+     * @return OpenGraph
+     */
+    public function setDeterminer(string $determiner): OpenGraph
+    {
+        $this->determiner = $determiner;
+
+        return $this;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getImage()
+    {
+        $this->image = new Image($this);
+
+        return $this->image;
+    }
+
+    /**
+     * @return Video
+     */
+    public function getVideo()
+    {
+        $this->video = new Video($this);
+
+        return $this->video;
+    }
+
+    public function getAudio()
+    {
+        $this->audio = new Audio($this);
+
+        return $this->audio;
+    }
+
+    /**
+     * @return TwitterCard
+     */
+    public function useTwitterCard()
+    {
+        $this->twitterCard = new TwitterCard($this);
+
+        return $this->twitterCard;
+    }
+
+    /**
+     * @param array $data
+     */
+    public function render(array $data)
+    {
+        Yii::$app->view->registerMetaTag($data);
+    }
 }
