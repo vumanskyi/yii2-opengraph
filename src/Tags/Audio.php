@@ -71,15 +71,6 @@ class Audio extends Tag
             'content'  => $this->getUrl()
         ]);
 
-        foreach ($this->attributes as $key => $property) {
-            if (empty($property)) {
-                continue;
-            }
-
-            $this->getOpenGraph()->render([
-                'property'      => self::OG_PREFIX . 'audio:' . $key,
-                'content'   => $property
-            ]);
-        }
+        $this->additionalRender($this->attributes, 'audio:', true);
     }
 }

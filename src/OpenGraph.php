@@ -1,8 +1,13 @@
 <?php
 namespace umanskyi31\opengraph;
 
+use umanskyi31\opengraph\Tags\Article;
 use umanskyi31\opengraph\Tags\Audio;
+use umanskyi31\opengraph\Tags\Basic;
+use umanskyi31\opengraph\Tags\Book;
 use umanskyi31\opengraph\Tags\Image;
+use umanskyi31\opengraph\Tags\Music;
+use umanskyi31\opengraph\Tags\Profile;
 use umanskyi31\opengraph\Tags\TwitterCard;
 use umanskyi31\opengraph\Tags\Video;
 use Yii;
@@ -10,49 +15,9 @@ use Yii;
 class OpenGraph
 {
     /**
-     * @var string
+     * @var Article
      */
-    protected $title;
-
-    /**
-     * @var string
-     */
-    protected $type;
-
-    /**
-     * @var string
-     */
-    protected $url;
-
-    /**
-     * @var string
-     */
-    protected $description;
-
-    /**
-     * @var string
-     */
-    protected $determiner;
-
-    /**
-     * @var string
-     */
-    protected $locale;
-
-    /**
-     * @var array
-     */
-    protected $localAlternate;
-
-    /**
-     * @var Image
-     */
-    protected $image;
-
-    /**
-     * @var Video
-     */
-    protected $video;
+    protected $article;
 
     /**
      * @var Audio
@@ -60,154 +25,54 @@ class OpenGraph
     protected $audio;
 
     /**
+     * @var Basic
+     */
+    protected $basic;
+
+    /**
+     * @var Book
+     */
+    protected $book;
+
+    /**
+     * @var Image
+     */
+    protected $image;
+
+    /**
+     * @var Music
+     */
+    protected $music;
+
+    /**
+     * @var Profile
+     */
+    protected $profile;
+
+    /**
+     * @var Video
+     */
+    protected $video;
+
+    /**
      * @var TwitterCard
      */
     protected $twitterCard;
 
     /**
-     * @param OpenGraph $url
-     *
-     * @return OpenGraph
+     * @return Basic
      */
-    public function setUrl(OpenGraph $url): OpenGraph
+    public function getBasic(): Basic
     {
-        $this->url = $url;
+        $this->basic = new Basic($this);
 
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrl(): OpenGraph
-    {
-        return $this->url;
-    }
-
-    /**
-     * @param string $locale
-     *
-     * @return OpenGraph
-     */
-    public function setLocale(string $locale): OpenGraph
-    {
-        $this->locale = $locale;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLocale(): string
-    {
-        return $this->locale;
-    }
-
-    /**
-     * @param string $title
-     *
-     * @return OpenGraph
-     */
-    public function setTitle(string $title): OpenGraph
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return OpenGraph
-     */
-    public function setType(string $type): OpenGraph
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * @param array $localAlternate
-     *
-     * @return OpenGraph
-     */
-    public function setLocalAlternate(array $localAlternate): OpenGraph
-    {
-        $this->localAlternate = $localAlternate;
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLocalAlternate(): array
-    {
-        return $this->localAlternate;
-    }
-
-    /**
-     * @param string $description
-     *
-     * @return OpenGraph
-     */
-    public function setDescription(string $description): OpenGraph
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDeterminer(): string
-    {
-        return $this->determiner;
-    }
-
-    /**
-     * @param string $determiner
-     *
-     * @return OpenGraph
-     */
-    public function setDeterminer(string $determiner): OpenGraph
-    {
-        $this->determiner = $determiner;
-
-        return $this;
+        return $this->basic;
     }
 
     /**
      * @return Image
      */
-    public function getImage()
+    public function getImage(): Image
     {
         $this->image = new Image($this);
 
@@ -215,16 +80,29 @@ class OpenGraph
     }
 
     /**
+     * @return Music
+     */
+    public function getMusic(): Music
+    {
+        $this->music = new Music($this);
+
+        return $this->music;
+    }
+
+    /**
      * @return Video
      */
-    public function getVideo()
+    public function getVideo(): Video
     {
         $this->video = new Video($this);
 
         return $this->video;
     }
 
-    public function getAudio()
+    /**
+     * @return Audio
+     */
+    public function getAudio(): Audio
     {
         $this->audio = new Audio($this);
 
@@ -232,9 +110,39 @@ class OpenGraph
     }
 
     /**
+     * @return Article
+     */
+    public function getArticle(): Article
+    {
+        $this->article = new Article($this);
+
+        return $this->article;
+    }
+
+    /**
+     * @return Book
+     */
+    public function getBook(): Book
+    {
+        $this->book = new Book($this);
+
+        return $this->book;
+    }
+
+    /**
+     * @return Profile
+     */
+    public function getProfile(): Profile
+    {
+        $this->profile = new Profile($this);
+
+        return $this->profile;
+    }
+
+    /**
      * @return TwitterCard
      */
-    public function useTwitterCard()
+    public function useTwitterCard(): TwitterCard
     {
         $this->twitterCard = new TwitterCard($this);
 

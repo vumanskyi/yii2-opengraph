@@ -41,13 +41,6 @@ class Video extends Tag
         'duration',
         'release_date',
         'tag',
-        'actor',
-        'actor:role',
-        'director',
-        'writer',
-        'duration',
-        'release_date',
-        'tag',
         'series',
     ];
 
@@ -92,6 +85,43 @@ class Video extends Tag
         return $this;
     }
 
+    /**
+     * @param array $attributes
+     *
+     * @return Image
+     * @throws OpenGraphException
+     */
+    public function setAdditionalAttributes(array $attributes): Video
+    {
+        $validAttributes = $this->validAdditionalAttr;
+
+        array_map(function ($key, $value) use ($validAttributes) {
+            if (!in_array($key, $validAttributes)) {
+                throw new OpenGraphException("Invalid values", 500);
+            }
+        }, array_keys($attributes), $attributes);
+
+        $this->additionalAttributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAdditionalAttributes(): array
+    {
+        return $this->additionalAttributes;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttributes(): array
+    {
+        return $this->attributes;
+    }
+
     public function render()
     {
         $this->getOpenGraph()->render([
@@ -99,15 +129,7 @@ class Video extends Tag
             'content'  => $this->getUrl()
         ]);
 
-        foreach ($this->attributes as $key => $property) {
-            if (empty($property)) {
-                continue;
-            }
-
-            $this->getOpenGraph()->render([
-                'property'      => self::OG_PREFIX . 'video:' . $key,
-                'content'   => $property
-            ]);
-        }
+        $this->additionalRender($this->attributes, self::OG_PREFIX . 'video:', true);
+        $this->additionalRender($this->additionalAttributes,  'video:', true);
     }
 }

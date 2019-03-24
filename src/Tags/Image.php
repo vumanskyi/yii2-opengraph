@@ -1,7 +1,6 @@
 <?php
 namespace umanskyi31\opengraph\Tags;
 
-
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
 
 class Image extends Tag
@@ -67,6 +66,14 @@ class Image extends Tag
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getAttributes(): array
+    {
+        return $this->attributes;
+    }
+
     public function render()
     {
         $this->getOpenGraph()->render([
@@ -74,15 +81,6 @@ class Image extends Tag
             'content'  => $this->getUrl()
         ]);
 
-        foreach ($this->attributes as $key => $property) {
-            if (empty($property)) {
-                continue;
-            }
-
-            $this->getOpenGraph()->render([
-                'property'      => self::OG_PREFIX . 'image:' . $key,
-                'content'   => $property
-            ]);
-        }
+        $this->additionalRender($this->getAttributes(), self::OG_PREFIX . 'image:', true);
     }
 }

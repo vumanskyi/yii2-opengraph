@@ -33,5 +33,27 @@ abstract class Tag
     }
 
 
+    /**
+     * @param array $data
+     * @param string $prefixKey
+     * @param bool $useKey
+     */
+    public function additionalRender(array $data = [], string $prefixKey, bool $useKey = false)
+    {
+        foreach ($data as $key => $value) {
+
+            if (empty($value)) {
+                continue;
+            }
+
+            $property = $useKey ? $prefixKey . $key :  $prefixKey;
+
+            $this->getOpenGraph()->render([
+                'property'  => $property,
+                'content'   => $value
+            ]);
+        }
+    }
+
     abstract function render();
 }
