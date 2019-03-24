@@ -2,18 +2,28 @@ language: php
 
 php:
   - 7.1
+  - 7.2
 
 install:
   - composer self-update
   - composer global require "fxp/composer-asset-plugin:^1.3"
   - composer install
 
+  - wget -c -nc --retry-connrefused --tries=0 https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
+  - chmod +x coveralls.phar
+  - php coveralls.phar --version
+
+
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
+  - mkdir -p build/logs
+  - ls -al
 
-#script:
-#  - phpunit --coverage-text --coverage-clover=coverage.clover
-#
-#after_script:
-#  - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
+script:
+  - phpunit --coverage-text --coverage-clover=coverage.clover
+  - phpunit --coverage-clover build/logs/clover.xml
+
+
+after_script:
+  - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover

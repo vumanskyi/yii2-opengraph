@@ -6,7 +6,7 @@ class Book extends Tag
     /**
      * @var string[]
      */
-    protected $author;
+    protected $author = [];
 
     /**
      * @var string
@@ -21,7 +21,7 @@ class Book extends Tag
     /**
      * @var string[]
      */
-    protected $tag;
+    protected $tag = [];
 
     /**
      * @param string[] $author

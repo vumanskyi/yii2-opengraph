@@ -150,6 +150,7 @@ class OpenGraph
     }
 
     /**
+     * @codeCoverageIgnore
      * @param array $data
      */
     public function render(array $data)

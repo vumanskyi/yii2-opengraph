@@ -21,7 +21,7 @@ class Article extends Tag
     /**
      * @var string[]
      */
-    protected $author;
+    protected $author = [];
 
     /**
      * @var string
@@ -31,7 +31,7 @@ class Article extends Tag
     /**
      * @var string[]
      */
-    protected $tag;
+    protected $tag = [];
 
     /**
      * @return string[]

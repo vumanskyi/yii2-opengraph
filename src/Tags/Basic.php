@@ -42,7 +42,7 @@ class Basic extends Tag
     /**
      * @var array
      */
-    protected $localAlternate;
+    protected $localAlternate = [];
 
     /**
      * @param string $url
@@ -219,6 +219,6 @@ class Basic extends Tag
             ]);
         }
 
-        $this->additionalRender($this->localAlternate, "locale:alternate");
+        $this->additionalRender($this->getLocalAlternate(), "locale:alternate");
     }
 }

@@ -88,8 +88,7 @@ class Video extends Tag
     /**
      * @param array $attributes
      *
-     * @return Image
-     * @throws OpenGraphException
+     * @return Video
      */
     public function setAdditionalAttributes(array $attributes): Video
     {

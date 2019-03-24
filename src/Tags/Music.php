@@ -47,7 +47,7 @@ class Music extends Tag
     /**
      * @var array
      */
-    protected $musician;
+    protected $musician = [];
 
 
     /**
