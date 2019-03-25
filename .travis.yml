@@ -2,7 +2,6 @@ language: php
 
 php:
   - 7.1
-  - 7.2
 
 install:
   - composer self-update
@@ -21,9 +20,11 @@ before_script:
   - ls -al
 
 script:
-  - phpunit --coverage-text --coverage-clover=coverage.clover
   - phpunit --coverage-clover build/logs/clover.xml
 
 
 after_script:
-  - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
+  - php vendor/bin/coveralls -v
+
+branch:
+  - development
