@@ -80,14 +80,6 @@ class TwitterCard extends Tag
     }
 
     /**
-     * @return array
-     */
-    public function getValidCard(): array
-    {
-        return $this->validCard;
-    }
-
-    /**
      * @return string
      */
     public function getSite(): string
