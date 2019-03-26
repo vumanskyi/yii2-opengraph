@@ -1,4 +1,4 @@
-presets: recommended
+preset: recommended
 
 risky: false
 
