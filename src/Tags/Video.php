@@ -1,4 +1,5 @@
 <?php
+
 namespace umanskyi31\opengraph\Tags;
 
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
@@ -67,8 +68,9 @@ class Video extends Tag
     /**
      * @param array $attributes
      *
-     * @return Image
      * @throws OpenGraphException
+     *
+     * @return Image
      */
     public function setAttributes(array $attributes): Video
     {
@@ -76,7 +78,7 @@ class Video extends Tag
 
         array_map(function ($key, $value) use ($validAttributes) {
             if (!in_array($key, $validAttributes)) {
-                throw new OpenGraphException("Invalid values", 500);
+                throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attributes), $attributes);
 
@@ -96,7 +98,7 @@ class Video extends Tag
 
         array_map(function ($key, $value) use ($validAttributes) {
             if (!in_array($key, $validAttributes)) {
-                throw new OpenGraphException("Invalid values", 500);
+                throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attributes), $attributes);
 
@@ -124,11 +126,11 @@ class Video extends Tag
     public function render()
     {
         $this->getOpenGraph()->render([
-            'property' => self::OG_PREFIX . 'video',
-            'content'  => $this->getUrl()
+            'property' => self::OG_PREFIX.'video',
+            'content'  => $this->getUrl(),
         ]);
 
-        $this->additionalRender($this->attributes, self::OG_PREFIX . 'video:', true);
-        $this->additionalRender($this->additionalAttributes,  'video:', true);
+        $this->additionalRender($this->attributes, self::OG_PREFIX.'video:', true);
+        $this->additionalRender($this->additionalAttributes, 'video:', true);
     }
 }

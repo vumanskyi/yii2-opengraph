@@ -1,4 +1,5 @@
 <?php
+
 namespace umanskyi31\opengraph\Tags;
 
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
@@ -46,8 +47,9 @@ class Audio extends Tag
     /**
      * @param array $attributes
      *
-     * @return Image
      * @throws OpenGraphException
+     *
+     * @return Image
      */
     public function setAttributes(array $attributes): Audio
     {
@@ -55,7 +57,7 @@ class Audio extends Tag
 
         array_map(function ($key, $value) use ($validAttributes) {
             if (!in_array($key, $validAttributes)) {
-                throw new OpenGraphException("Invalid values", 500);
+                throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attributes), $attributes);
 
@@ -67,8 +69,8 @@ class Audio extends Tag
     public function render()
     {
         $this->getOpenGraph()->render([
-            'property' => self::OG_PREFIX . 'audio',
-            'content'  => $this->getUrl()
+            'property' => self::OG_PREFIX.'audio',
+            'content'  => $this->getUrl(),
         ]);
 
         $this->additionalRender($this->attributes, 'audio:', true);

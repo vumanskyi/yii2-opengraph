@@ -1,4 +1,5 @@
 <?php
+
 namespace umanskyi31\opengraph\Tags;
 
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
@@ -23,7 +24,7 @@ class Image extends Tag
         'width',
         'height',
         'type',
-        'alt'
+        'alt',
     ];
 
     /**
@@ -57,7 +58,7 @@ class Image extends Tag
 
         array_map(function ($key, $value) use ($validAttributes) {
             if (!in_array($key, $validAttributes) || empty($value)) {
-                throw new OpenGraphException("Invalid values", 500);
+                throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attributes), $attributes);
 
@@ -77,10 +78,10 @@ class Image extends Tag
     public function render()
     {
         $this->getOpenGraph()->render([
-            'property' => self::OG_PREFIX . 'image',
-            'content'  => $this->getUrl()
+            'property' => self::OG_PREFIX.'image',
+            'content'  => $this->getUrl(),
         ]);
 
-        $this->additionalRender($this->getAttributes(), self::OG_PREFIX . 'image:', true);
+        $this->additionalRender($this->getAttributes(), self::OG_PREFIX.'image:', true);
     }
 }

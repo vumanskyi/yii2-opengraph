@@ -1,4 +1,5 @@
 <?php
+
 namespace umanskyi31\opengraph\Tags;
 
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
@@ -27,11 +28,12 @@ class Profile extends Tag
 
     /**
      * @var array
+     *
      * @see http://ogp.me/#type_profile
      */
     protected $validGender = [
         'male',
-        'female'
+        'female',
     ];
 
     /**
@@ -81,13 +83,14 @@ class Profile extends Tag
     /**
      * @param string $gender
      *
-     * @return Profile
      * @throws OpenGraphException
+     *
+     * @return Profile
      */
     public function setGender(string $gender): Profile
     {
         if (!$this->isValidGender($gender)) {
-            throw new OpenGraphException("Invalid values", 500);
+            throw new OpenGraphException('Invalid values', 500);
         }
 
         $this->gender = strtolower($gender);
@@ -139,8 +142,8 @@ class Profile extends Tag
             }
 
             $this->getOpenGraph()->render([
-                'name'      => 'profile:' . $key,
-                'content'   => $property
+                'name'      => 'profile:'.$key,
+                'content'   => $property,
             ]);
         }
     }

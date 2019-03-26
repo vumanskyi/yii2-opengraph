@@ -1,4 +1,5 @@
 <?php
+
 namespace umanskyi31\opengraph\Tags;
 
 use umanskyi31\opengraph\OpenGraph;
@@ -17,6 +18,7 @@ abstract class Tag
 
     /**
      * TwitterCard constructor.
+     *
      * @param OpenGraph $openGraph
      */
     public function __construct(OpenGraph $openGraph)
@@ -32,28 +34,26 @@ abstract class Tag
         return $this->openGraph;
     }
 
-
     /**
-     * @param array $data
+     * @param array  $data
      * @param string $prefixKey
-     * @param bool $useKey
+     * @param bool   $useKey
      */
     public function additionalRender(array $data = [], string $prefixKey, bool $useKey = false)
     {
         foreach ($data as $key => $value) {
-
             if (empty($value)) {
                 continue;
             }
 
-            $property = $useKey ? $prefixKey . $key :  $prefixKey;
+            $property = $useKey ? $prefixKey.$key : $prefixKey;
 
             $this->getOpenGraph()->render([
                 'property'  => $property,
-                'content'   => $value
+                'content'   => $value,
             ]);
         }
     }
 
-    abstract function render();
+    abstract public function render();
 }
