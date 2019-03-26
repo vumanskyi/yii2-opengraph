@@ -1,7 +1,8 @@
 # Yii2.x Open Graph
-
+[![Build Status](https://travis-ci.org/vumanskyi/yii2-opengraph.svg?branch=master)](https://travis-ci.org/vumanskyi/yii2-opengraph)
 [![StyleCI](https://github.styleci.io/repos/119894207/shield?branch=master)](https://github.styleci.io/repos/119894207)
 [![Total Downloads](https://img.shields.io/packagist/dt/umanskyi31/opengraph.svg?style=flat-square)](https://packagist.org/packages/umanskyi31/opengraph)
+[![Coverage Status](https://coveralls.io/repos/github/vumanskyi/yii2-opengraph/badge.svg)](https://coveralls.io/github/vumanskyi/yii2-opengraph)
 
 Create implementation for Yii2. Generate Open Graph protocol for your website.
 

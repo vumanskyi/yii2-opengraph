@@ -1,0 +1,5 @@
+#for phpstorm
+.idea
+
+/vendor
+/build
