@@ -59,7 +59,7 @@ class Basic extends Tag
     /**
      * @return string
      */
-    public function getUrl(): Basic
+    public function getUrl(): string
     {
         return $this->url;
     }

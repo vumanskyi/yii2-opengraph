@@ -1,3 +1,5 @@
+presets: recommended
+
 risky: false
 
 enabled:
@@ -13,7 +15,8 @@ disabled:
 
 finder:
   exclude:
-    - "tests"
+    - tests
+    - vendor
   name:
     - "*.php"
 

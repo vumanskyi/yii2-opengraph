@@ -46,7 +46,7 @@ class Article extends Tag
      */
     public function getExpirationTime(): \DateTime
     {
-        return $this->expiration_time;
+        return new \DateTime($this->expiration_time);
     }
 
     /**
@@ -54,7 +54,7 @@ class Article extends Tag
      */
     public function getModifiedTime(): \DateTime
     {
-        return $this->modified_time;
+        return new \DateTime($this->modified_time);
     }
 
     /**
@@ -62,7 +62,7 @@ class Article extends Tag
      */
     public function getPublishTime(): \DateTime
     {
-        return $this->publish_time;
+        return new \DateTime($this->publish_time);
     }
 
     /**
