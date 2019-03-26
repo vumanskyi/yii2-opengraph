@@ -1,4 +1,5 @@
 <?php
+
 namespace umanskyi31\opengraph;
 
 use umanskyi31\opengraph\Tags\Article;
@@ -151,6 +152,7 @@ class OpenGraph
 
     /**
      * @codeCoverageIgnore
+     *
      * @param array $data
      */
     public function render(array $data)

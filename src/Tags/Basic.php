@@ -1,6 +1,6 @@
 <?php
-namespace umanskyi31\opengraph\Tags;
 
+namespace umanskyi31\opengraph\Tags;
 
 class Basic extends Tag
 {
@@ -214,11 +214,11 @@ class Basic extends Tag
             }
 
             $this->getOpenGraph()->render([
-                'property'      => self::OG_PREFIX . $key,
-                'content'   => $property
+                'property'      => self::OG_PREFIX.$key,
+                'content'       => $property,
             ]);
         }
 
-        $this->additionalRender($this->getLocalAlternate(), "locale:alternate");
+        $this->additionalRender($this->getLocalAlternate(), 'locale:alternate');
     }
 }

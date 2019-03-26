@@ -1,4 +1,5 @@
 <?php
+
 namespace umanskyi31\opengraph\Tags;
 
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
@@ -9,17 +10,18 @@ class TwitterCard extends Tag
     /**
      * @var string
      */
-    const PREFIX = "twitter:";
+    const PREFIX = 'twitter:';
 
     /**
      * @var array
+     *
      * @see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html
      */
     private $validCard = [
         'summary',
         'summary_large_image',
         'app',
-        'player'
+        'player',
     ];
 
     /**
@@ -36,7 +38,6 @@ class TwitterCard extends Tag
      * @var string
      */
     protected $creator;
-
 
     /**
      * @param string $site
@@ -65,13 +66,14 @@ class TwitterCard extends Tag
     /**
      * @param string $card
      *
-     * @return TwitterCard
      * @throws OpenGraphException
+     *
+     * @return TwitterCard
      */
     public function setCard(string $card): TwitterCard
     {
         if (!$this->isValidCart($card)) {
-            throw new OpenGraphException("Invalid values", 500);
+            throw new OpenGraphException('Invalid values', 500);
         }
 
         $this->card = strtolower($card);
@@ -123,10 +125,9 @@ class TwitterCard extends Tag
             }
 
             $this->getOpenGraph()->render([
-                'name'      => self::PREFIX . $key,
-                'content'   => $property
+                'name'      => self::PREFIX.$key,
+                'content'   => $property,
             ]);
         }
     }
-
 }

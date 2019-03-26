@@ -1,4 +1,5 @@
 <?php
+
 namespace umanskyi31\opengraph\Tags;
 
 class Article extends Tag
@@ -163,8 +164,8 @@ class Article extends Tag
             }
 
             $this->getOpenGraph()->render([
-                'property'  => 'article:'. $key,
-                'content'   => $property
+                'property'  => 'article:'.$key,
+                'content'   => $property,
             ]);
         }
 

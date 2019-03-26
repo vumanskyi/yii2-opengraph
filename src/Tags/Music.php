@@ -1,6 +1,6 @@
 <?php
-namespace umanskyi31\opengraph\Tags;
 
+namespace umanskyi31\opengraph\Tags;
 
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
 
@@ -35,7 +35,7 @@ class Music extends Tag
      */
     protected $validAttrSong = [
         'song:disc',
-        'song:track'
+        'song:track',
     ];
 
     /**
@@ -43,12 +43,10 @@ class Music extends Tag
      */
     protected $duration;
 
-
     /**
      * @var array
      */
     protected $musician = [];
-
 
     /**
      * @var \DateTime
@@ -111,7 +109,7 @@ class Music extends Tag
 
         array_map(function ($key, $value) use ($validAttributes) {
             if (!in_array($key, $validAttributes)) {
-                throw new OpenGraphException("Invalid values", 500);
+                throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attrAlbum), $attrAlbum);
 
@@ -186,7 +184,7 @@ class Music extends Tag
 
     /**
      * @param string $song
-     * @param array $attr
+     * @param array  $attr
      *
      * @return Music
      */
@@ -199,7 +197,7 @@ class Music extends Tag
 
             array_map(function ($key, $value) use ($validAttributes) {
                 if (!in_array($key, $validAttributes)) {
-                    throw new OpenGraphException("Invalid values", 500);
+                    throw new OpenGraphException('Invalid values', 500);
                 }
             }, array_keys($attr), $attr);
 
@@ -208,7 +206,6 @@ class Music extends Tag
 
         return $this;
     }
-
 
     public function render()
     {
@@ -221,8 +218,8 @@ class Music extends Tag
             }
 
             $this->getOpenGraph()->render([
-                'property'  => 'music:'. $key,
-                'content'   => $property
+                'property'  => 'music:'.$key,
+                'content'   => $property,
             ]);
         }
 
