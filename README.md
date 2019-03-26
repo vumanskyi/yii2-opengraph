@@ -1,5 +1,5 @@
 # Yii2.x Open Graph
-[![Coverage Status](https://coveralls.io/repos/github/vumanskyi/yii2-opengraph/badge.svg?branch=master)](https://coveralls.io/github/vumanskyi/yii2-opengraph?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/vumanskyi/yii2-opengraph/badge.svg)](https://coveralls.io/github/vumanskyi/yii2-opengraph)
 
 Create implementation for Yii2. Generate Open Graph protocol for your website.
 
