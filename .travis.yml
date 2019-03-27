@@ -1,6 +1,7 @@
 language: php
 
 php:
+  - 7.0
   - 7.1
 
 install:
@@ -16,15 +17,21 @@ install:
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
+
   - mkdir -p build/logs
   - ls -al
 
 script:
-  - phpunit --coverage-clover build/logs/clover.xml
+   - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 
 after_script:
-  - php vendor/bin/coveralls -v
+  - travis_retry php coveralls.phar -v
 
-branch:
-  - development
+branches:
+  only: master
+
+cache:
+  directories:
+  - vendor
+  - $HOME/.cache/composer
