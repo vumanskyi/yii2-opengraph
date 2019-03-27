@@ -9,8 +9,8 @@ install:
   - composer global require "fxp/composer-asset-plugin:^1.3"
   - composer install
 
-  - wget -c -nc --retry-connrefused --tries=0 https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
-  - chmod +x coveralls.phar
+  - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
+  - chmod +x php-coveralls.phar
   - php coveralls.phar --version
 
 
@@ -23,13 +23,11 @@ before_script:
 
 script:
     - php vendor/bin/phpunit -c phpunit.xml.dist
+    - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 
 after_script:
   - travis_retry php coveralls.phar -v
-
-after_success:
-  - travis_retry php vendor/bin/php-coveralls -v
 
 branches:
   only: master
