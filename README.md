@@ -22,7 +22,7 @@ to the require section of your composer.json file.
 
 ### Configuration
 
-```
+```php
    'components' => [
        'opengraph' => [
            'class' => 'umanskyi31\opengraph\OpenGraph',
@@ -35,54 +35,19 @@ to the require section of your composer.json file.
 
 You must add component to controller before rendering view.
 
-
-
-#### Use like object
-Component contain objects: ['title','type','url','image','description','audio','locale','site_name','video','audio','music']
-
-```
-Yii::$app->opengraph->title = 'My_Article_Title';
-Yii::$app->opengraph->description = 'My_Article_Description';
-Yii::$app->opengraph->image = 'https://my_article_image.png';
-Yii::$app->opengraph->video = 'http://example.com/bond/trailer.swf';
-//etc...
-
-```  
-
-or like function
-
-```
-Yii::$app->opengraph->title('My_Article_Title');
-Yii::$app->opengraph->description('My_Article_Description');
-Yii::$app->opengraph->image('https://my_article_image.png');
-Yii::$app->opengraph->video('http://example.com/bond/trailer.swf');
-//etc...
-
-``` 
-#### Use like array
-
-Only like array, we can create component like **twitter card**
-
 Example:
 
-if use default og
-```
-Yii::$app->opengraph->optMetaData([
-            'title' => 'My_Article_Title',
-            'description' => 'My_Article_Description'
-            //etc..
-        ])
-```
-
-or own properties 
+```php
+     /**
+      * @var OpenGraph $openGraph
+      */
+      $openGraph = Yii::$app->opengraph;
 
 ```
-Yii::$app->opengraph->optMetaData([
-            'twitter:card' => 'summary',
-            'twitter:site' => 'https://example.com/'
-            //and you can use like that 
-            'og:title' => 'My_Article_Title'
-            //etc..
-  ], true)
-  
+
+
+
+#### How to use
+```
+    
 ```
