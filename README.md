@@ -42,13 +42,26 @@ Example:
       * @var OpenGraph $openGraph
       */
       $openGraph = Yii::$app->opengraph;
-
 ```
 
 
 
 #### How to use
 
-```
-    
+Add basic attributes:
+
+```php
+     /**
+      * @var OpenGraph $openGraph
+      */
+      $openGraph = Yii::$app->opengraph;
+      
+      $openGraph->getBasic()
+            ->setUrl('https://umanskyi.com') 
+            ->setTitle('My_Article_Title')
+            ->setDescription('My_Article_Description)
+            ->setSiteName('My_Site_Name')
+            ->setLocale('pl_PL')
+            ->setLocalAlternate(['fr_FR', 'en_US'])
+            ->render();
 ```
