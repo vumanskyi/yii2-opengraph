@@ -22,11 +22,14 @@ before_script:
   - ls -al
 
 script:
-   - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+    - php vendor/bin/phpunit -c phpunit.xml.dist
 
 
 after_script:
   - travis_retry php coveralls.phar -v
+
+after_success:
+  - travis_retry php vendor/bin/php-coveralls -v
 
 branches:
   only: master
