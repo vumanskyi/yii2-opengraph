@@ -33,7 +33,7 @@ to the require section of your composer.json file.
 
 ### Usage
 
-You must add component to controller before rendering view.
+You should add component to controller before rendering view.
 
 Example:
 
@@ -65,3 +65,129 @@ Add basic attributes:
             ->setLocalAlternate(['fr_FR', 'en_US'])
             ->render();
 ```
+
+
+Add image attributes:
+
+```php
+     /**
+      * @var OpenGraph $openGraph
+      */
+      $openGraph = Yii::$app->opengraph;
+      
+      $openGraph->getImage()
+            ->setUrl('https://umanskyi.com/logo.png')
+            ->setAttributes([
+                'secure_url' => 'https://umanskyi.com/logo.png',
+                'width'      => 100,
+                'height'     => 100,
+                'alt'        => "Logo",
+            ])
+            ->render();
+```
+
+If necessary, an array of images also possible to add the next code:
+
+```php
+     /**
+      * @var OpenGraph $openGraph
+      */
+      $openGraph = Yii::$app->opengraph;
+      
+      $openGraph->getImage()
+            ->setUrl('https://umanskyi.com/logo.png')
+            ->setAttributes([
+                'secure_url' => 'https://umanskyi.com/logo.png',
+                'width'      => 100,
+                'height'     => 100,
+                'alt'        => "Logo",
+            ])
+            ->render();     
+      
+      $openGraph->getImage()
+            ->setUrl('https://umanskyi.com/small_logo.png')
+            ->setAttributes([
+                'secure_url' => 'https://umanskyi.com/small_logo.png',
+                'width'      => 50,
+                'height'     => 50,
+                'alt'        => "small logo",
+            ])
+            ->render();
+            
+```
+
+Add article attribute:
+
+```php
+       
+            
+```
+
+
+Add audio attribute:
+
+```php
+       
+            
+```
+
+
+
+Add book attribute:
+
+```php
+       
+            
+```
+
+
+
+Add music attribute:
+
+```php
+       
+            
+```
+
+
+
+Add profile attribute:
+
+```php
+      /**
+       * @var OpenGraph $openGraph
+       */
+       $openGraph = Yii::$app->opengraph;
+    
+       $openGraph->getProfile()
+            ->setGender('Male')
+            ->setFirstName('Vlad')
+            ->setLastName('Umanskyi')
+            ->setUsername('vlad.umanskyi')
+            ->render();   
+            
+```
+
+
+
+Add video attribute:
+
+```php
+       
+            
+```
+
+In current version also has the configuration **Twitter Card**
+
+```php
+        /**
+         * @var OpenGraph $openGraph
+         */
+         $openGraph = Yii::$app->opengraph;
+        
+         $openGraph->useTwitterCard()
+                ->setCard('summary')
+                ->setSite('https://umanskyi.com')
+                ->setCreator('Vlad Umanskyi')
+                ->render();
+```  
