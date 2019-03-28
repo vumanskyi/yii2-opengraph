@@ -123,7 +123,7 @@ class Music extends Tag
      */
     public function getReleaseDate(): \DateTime
     {
-        return $this->release_date;
+        return new \DateTime($this->release_date);
     }
 
     /**

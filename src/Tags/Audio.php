@@ -25,9 +25,9 @@ class Audio extends Tag
     ];
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -35,7 +35,7 @@ class Audio extends Tag
     /**
      * @param string $url
      *
-     * @return Video
+     * @return Audio
      */
     public function setUrl(string $url): Audio
     {
@@ -49,7 +49,7 @@ class Audio extends Tag
      *
      * @throws OpenGraphException
      *
-     * @return Image
+     * @return Audio
      */
     public function setAttributes(array $attributes): Audio
     {
@@ -64,6 +64,14 @@ class Audio extends Tag
         $this->attributes = $attributes;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttributes(): array
+    {
+        return $this->attributes;
     }
 
     public function render()
