@@ -57,7 +57,7 @@ class Image extends Tag
         $validAttributes = $this->validAttributes;
 
         array_map(function ($key, $value) use ($validAttributes) {
-            if (!in_array($key, $validAttributes) || empty($value)) {
+            if (empty($key) || !in_array($key, $validAttributes)) {
                 throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attributes), $attributes);

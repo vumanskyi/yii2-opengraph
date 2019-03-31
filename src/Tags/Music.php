@@ -108,7 +108,7 @@ class Music extends Tag
         $validAttributes = $this->validAttrAlbum;
 
         array_map(function ($key, $value) use ($validAttributes) {
-            if (!in_array($key, $validAttributes)) {
+            if (empty($key) || !in_array($key, $validAttributes)) {
                 throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attrAlbum), $attrAlbum);

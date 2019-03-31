@@ -1,9 +1,11 @@
 # Yii2.x Open Graph
 [![Build Status](https://travis-ci.org/vumanskyi/yii2-opengraph.svg?branch=master)](https://travis-ci.org/vumanskyi/yii2-opengraph)
 [![StyleCI](https://github.styleci.io/repos/119894207/shield?branch=master)](https://github.styleci.io/repos/119894207)
-[![Total Downloads](https://img.shields.io/packagist/dt/umanskyi31/opengraph.svg?style=flat-square)](https://packagist.org/packages/umanskyi31/opengraph)
+[![Total Downloads](https://poser.pugx.org/umanskyi31/opengraph/downloads)](https://packagist.org/packages/umanskyi31/opengraph)
+[![Latest Stable Version](https://poser.pugx.org/umanskyi31/opengraph/v/stable)](https://packagist.org/packages/umanskyi31/opengraph)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vumanskyi/yii2-opengraph/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vumanskyi/yii2-opengraph/?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 
 Created a new component for Yii2. The Open Graph component for your website
 
@@ -120,16 +122,35 @@ If necessary, an array of images also possible to add the next code:
 Add article attribute:
 
 ```php
-       
-            
+/**
+ * @var OpenGraph $openGraph
+ */
+ $openGraph = Yii::$app->opengraph;
+        
+ $openGraph->getArticle()
+       ->setAuthor(['http://examples.opengraphprotocol.us/profile.html'])
+       ->setTag(['Test_TAG'])
+       ->setSection('Front page')
+       ->setPublishTime(new \DateTime('2010-10-11'))
+       ->render();
 ```
 
 
 Add audio attribute:
 
 ```php
-       
-            
+/**
+ * @var OpenGraph $openGraph
+ */
+ $openGraph = Yii::$app->opengraph;
+
+ $openGraph->getAudio()
+       ->setAttributes([
+         'secure_url' => 'https://umanskyi.com/media/audio/250hz.mp3',
+         'type' => 'audio/mpeg'
+       ])
+       ->setUrl('https://d72cgtgi6hvvl.cloudfront.net/media/audio/250hz.mp3')
+       ->render();
 ```
 
 
@@ -137,8 +158,17 @@ Add audio attribute:
 Add book attribute:
 
 ```php
-       
-            
+/**
+ * @var OpenGraph $openGraph
+ */
+ $openGraph = Yii::$app->opengraph;
+ 
+ $openGraph->getBook()
+      ->setReleaseDate(new \DateTime('2011-10-10'))
+      ->setTag(['Apple', 'New'])
+      ->setAuthor(['http://umanskyi.com/profile.html'])
+      ->setIsbn(1451648537)
+      ->render();
 ```
 
 
@@ -146,8 +176,22 @@ Add book attribute:
 Add music attribute:
 
 ```php
-       
-            
+/**
+ * @var OpenGraph $openGraph
+ */
+ $openGraph = Yii::$app->opengraph;
+ 
+ $openGraph->getMusic()
+      ->setReleaseDate(new \DateTime('2016-01-16'))
+      ->setDuration(236)
+      ->setAttrAlbum([
+          'album:track' => 2
+      ])
+      ->setMusician([
+          'http://open.spotify.com/artist/1dfeR4HaWDbWqFHLkxsg1d',
+          'http://open.spotify.com/artist/1dfeR4HaWDbWqFirlsag1d'
+      ])
+      ->render();
 ```
 
 
@@ -174,8 +218,24 @@ Add profile attribute:
 Add video attribute:
 
 ```php
-       
-            
+/**
+ * @var OpenGraph $openGraph
+ */
+ $openGraph = Yii::$app->opengraph;
+ 
+ $openGraph->getVideo()
+      ->setUrl('https://umanskyi.com/strobe/FlashMediaPlayback.swf')
+      ->setAttributes([
+          'width' => 450,
+          'height' => 350,
+          'secure_url' => 'https://umanskyi.com/strobe/FlashMediaPlayback.swf',
+          'type' => 'application/x-shockwave-flash'
+      ])
+      ->setAdditionalAttributes([
+          'tag' => 'train',
+          'release_date' => '1980-10-02'
+      ])
+      ->render();
 ```
 
 In current version also has the configuration **Twitter Card**

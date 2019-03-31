@@ -56,7 +56,7 @@ class Audio extends Tag
         $validAttributes = $this->validAttributes;
 
         array_map(function ($key, $value) use ($validAttributes) {
-            if (!in_array($key, $validAttributes)) {
+            if (empty($key) || !in_array($key, $validAttributes)) {
                 throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attributes), $attributes);
@@ -81,6 +81,6 @@ class Audio extends Tag
             'content'  => $this->getUrl(),
         ]);
 
-        $this->additionalRender($this->attributes, 'audio:', true);
+        $this->additionalRender($this->attributes, self::OG_PREFIX.'audio:', true);
     }
 }

@@ -106,6 +106,8 @@ class Book extends Tag
 
     public function render()
     {
+        $this->additionalRender($this->getAuthor(), 'book:author');
+
         $properties = get_object_vars($this);
 
         foreach ($properties as $key => $property) {
@@ -119,7 +121,6 @@ class Book extends Tag
             ]);
         }
 
-        $this->additionalRender($this->getAuthor(), 'book:author');
         $this->additionalRender($this->getTag(), 'book:tag');
     }
 }
