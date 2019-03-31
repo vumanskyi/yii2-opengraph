@@ -2,137 +2,161 @@
 
 namespace umanskyi31\opengraph;
 
+use umanskyi31\opengraph\Tags\Article;
+use umanskyi31\opengraph\Tags\Audio;
+use umanskyi31\opengraph\Tags\Basic;
+use umanskyi31\opengraph\Tags\Book;
+use umanskyi31\opengraph\Tags\Image;
+use umanskyi31\opengraph\Tags\Music;
+use umanskyi31\opengraph\Tags\Profile;
+use umanskyi31\opengraph\Tags\TwitterCard;
+use umanskyi31\opengraph\Tags\Video;
 use Yii;
-use yii\web\View;
 
-/**
- * Class register all type of metadata for Open Graph
- * If need use only basic data - just register in current class
- * If need more your can create own and register here.
- *
- * @property OpenGraph optMetaData
- * @property OpenGraph title
- * @property OpenGraph description
- * @property OpenGraph type
- * @property OpenGraph url
- * @property OpenGraph image
- * @property OpenGraph audio
- * @property OpenGraph locale
- * @property OpenGraph site_name
- * @property OpenGraph video
- * @property OpenGraph music
- */
 class OpenGraph
 {
     /**
-     * Metadata basic.
-     *
-     * @var array
+     * @var Article
      */
-    private static $_metadata = [
-        'title',
-        'type',
-        'url',
-        'image',
-        'description',
-        'audio',
-        'locale',
-        'site_name',
-        'video',
-        'audio',
-        'music',
-    ];
+    protected $article;
 
     /**
-     * @var array
+     * @var Audio
      */
-    private $_components = [];
+    protected $audio;
 
     /**
-     * @var string
+     * @var Basic
      */
-    public function __get($name)
+    protected $basic;
+
+    /**
+     * @var Book
+     */
+    protected $book;
+
+    /**
+     * @var Image
+     */
+    protected $image;
+
+    /**
+     * @var Music
+     */
+    protected $music;
+
+    /**
+     * @var Profile
+     */
+    protected $profile;
+
+    /**
+     * @var Video
+     */
+    protected $video;
+
+    /**
+     * @var TwitterCard
+     */
+    protected $twitterCard;
+
+    /**
+     * @return Basic
+     */
+    public function getBasic(): Basic
     {
-        $this->_components[$name];
+        $this->basic = new Basic($this);
+
+        return $this->basic;
     }
 
     /**
-     * @param string $name
-     * @param string $value
+     * @return Image
      */
-    public function __set($name, $value)
+    public function getImage(): Image
     {
-        $this->_components[$name] = $value;
-    }
+        $this->image = new Image($this);
 
-    public function __construct()
-    {
-        Yii::$app->view->on(
-            View::EVENT_BEGIN_PAGE,
-            function () {
-                foreach ($this->_components as $key => $value) {
-                    $key = in_array($key, self::$_metadata) ? 'og:'.$key : $key;
-                    $this->registerOpenGraph($key, $value);
-                }
-            }
-        );
+        return $this->image;
     }
 
     /**
-     * @param string $name
-     * @param array  $params
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return mixed
+     * @return Music
      */
-    public function __call($name, $params)
+    public function getMusic(): Music
     {
-        if (!in_array($name, self::$_metadata)) {
-            throw new \InvalidArgumentException('Not reserved value in params');
-        }
+        $this->music = new Music($this);
 
-        $this->registerOpenGraph('og:'.$name, array_shift($params));
+        return $this->music;
     }
 
     /**
-     * Register new element of open graph.
-     *
-     * @param string $property Property for metadata
-     * @param mixed  $content  Content for metadata
-     *
-     * @throws \InvalidArgumentException
+     * @return Video
      */
-    protected function registerOpenGraph(string $property, string $content)
+    public function getVideo(): Video
     {
-        Yii::$app->view->registerMetaTag([
-            'property' => $property,
-            'content'  => $content,
-        ]);
+        $this->video = new Video($this);
+
+        return $this->video;
     }
 
     /**
-     * Set array for all metadata
-     * Example for use
-     * [
-     *  'title'       => 'Lorem ipsum',
-     *  'description' => 'lorem ipsum'
-     * ].
-     *
-     * @param array $opt      Set data array
-     * @param bool  $register Register new OG component
-     *
-     * @throws \InvalidArgumentException
+     * @return Audio
      */
-    public function optMetaData(array $opt, bool $register = false)
+    public function getAudio(): Audio
     {
-        foreach ($opt as $key => $value) {
-            if (!in_array($key, self::$_metadata) && !$register) {
-                throw new \InvalidArgumentException('Invalid argument in array');
-            }
+        $this->audio = new Audio($this);
 
-            $key = $register ? $key : 'og:'.$key;
-            $this->_components[$key] = $value;
-        }
+        return $this->audio;
+    }
+
+    /**
+     * @return Article
+     */
+    public function getArticle(): Article
+    {
+        $this->article = new Article($this);
+
+        return $this->article;
+    }
+
+    /**
+     * @return Book
+     */
+    public function getBook(): Book
+    {
+        $this->book = new Book($this);
+
+        return $this->book;
+    }
+
+    /**
+     * @return Profile
+     */
+    public function getProfile(): Profile
+    {
+        $this->profile = new Profile($this);
+
+        return $this->profile;
+    }
+
+    /**
+     * @return TwitterCard
+     */
+    public function useTwitterCard(): TwitterCard
+    {
+        $this->twitterCard = new TwitterCard($this);
+
+        return $this->twitterCard;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     *
+     * @param array $data
+     */
+    public function render(array $data)
+    {
+        Yii::$app->view->registerMetaTag($data);
     }
 }

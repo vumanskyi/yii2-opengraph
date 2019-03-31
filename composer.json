@@ -1,9 +1,10 @@
 {
     "name": "vumanskyi/opengraph",
-    "description": "Create implementation for Yii2. Generate Open Graph protocol for your website",
+    "description": "Created a new component for Yii2. The Open Graph component for your website",
     "keywords": ["yii2", "extension", "component", "open-graph", "opengraph", "facebook", "twitter-card", "seo", "Vlad Umanskyi", "VladUmanskyi"],
     "homepage": "https://github.com/vumanskyi/yii2-opengraph",
     "type": "yii2-extension",
+    "version": "2.0.0",
     "license": "MIT",
     "authors": [
         {
@@ -13,13 +14,13 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=5.4.0",
-        "yiisoft/yii2": "~2.0.14",
-        "yiisoft/yii2-bootstrap": "~2.0.0"
+        "php": ">=7.0",
+        "yiisoft/yii2": "~2.0.14"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.5",
-        "codeclimate/php-test-reporter": "0.4.4"
+        "phpunit/phpunit": "~7.1",
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "scrutinizer/ocular": "~1.1"
     },
     "autoload": {
         "psr-4": {
