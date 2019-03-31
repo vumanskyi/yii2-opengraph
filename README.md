@@ -1,7 +1,7 @@
 # Yii2.x Open Graph
 
 [![StyleCI](https://github.styleci.io/repos/119894207/shield?branch=master)](https://github.styleci.io/repos/119894207)
-[![Total Downloads](https://img.shields.io/packagist/dt/umanskyi31/opengraph.svg?style=flat-square)](https://packagist.org/packages/umanskyi31/opengraph)
+[![Total Downloads](https://poser.pugx.org/umanskyi31/opengraph/downloads)](https://packagist.org/packages/umanskyi31/opengraph)
 
 Create implementation for Yii2. Generate Open Graph protocol for your website.
 
