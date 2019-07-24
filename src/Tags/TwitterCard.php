@@ -3,7 +3,6 @@
 namespace umanskyi31\opengraph\Tags;
 
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
-use umanskyi31\opengraph\OpenGraph;
 
 class TwitterCard extends Tag
 {
