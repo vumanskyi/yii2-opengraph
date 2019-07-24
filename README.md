@@ -62,7 +62,7 @@ Add basic attributes:
  $openGraph->getBasic()
        ->setUrl('https://umanskyi.com') 
        ->setTitle('My_Article_Title')
-       ->setDescription('My_Article_Description)
+       ->setDescription('My_Article_Description')
        ->setSiteName('My_Site_Name')
        ->setLocale('pl_PL')
        ->setLocalAlternate(['fr_FR', 'en_US'])
