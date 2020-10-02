@@ -20,7 +20,7 @@ class OpenGraphTest extends TestCase
      */
     protected $opengraph;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

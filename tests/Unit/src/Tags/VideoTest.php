@@ -2,6 +2,7 @@
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
+use umanskyi31\opengraph\Exceptions\OpenGraphException;
 use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\Tags\Video;
 
@@ -12,14 +13,17 @@ class VideoTest extends TestCase
      */
     protected $opengraph;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->opengraph = new OpenGraph();
     }
 
-    public function testSetUrl()
+    /**
+     * @test
+     */
+    public function setterUrl()
     {
         $video = new Video($this->opengraph);
 
@@ -31,7 +35,10 @@ class VideoTest extends TestCase
 
     }
 
-    public function testSetAttribute()
+    /**
+     * @test
+     */
+    public function setterAttribute()
     {
         $video = new Video($this->opengraph);
 
@@ -48,11 +55,9 @@ class VideoTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Invalid values
-     * @expectedExceptionCode 500
+     * @test
      */
-    public function testSetAttributeFailure()
+    public function setterAttributeFailure()
     {
         $video = new Video($this->opengraph);
 
@@ -62,10 +67,17 @@ class VideoTest extends TestCase
             'not_valid_url' => 'test'
         ];
 
+        $this->expectException(OpenGraphException::class);
+        $this->expectExceptionMessage('Invalid values');
+        $this->expectExceptionCode(500);
+
         $video->setAttributes($attr);
     }
 
-    public function testSetAdditionalAttribute()
+    /**
+     * @test
+     */
+    public function setterAdditionalAttribute()
     {
         $video = new Video($this->opengraph);
 
@@ -86,11 +98,9 @@ class VideoTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Invalid values
-     * @expectedExceptionCode 500
+     * @test
      */
-    public function testSetAdditionalAttributeFailure()
+    public function setterAdditionalAttributeFailure()
     {
         $video = new Video($this->opengraph);
 
@@ -105,6 +115,10 @@ class VideoTest extends TestCase
             'series'        => 1,
             'not_valid'     => true,
         ];
+
+        $this->expectException(OpenGraphException::class);
+        $this->expectExceptionMessage('Invalid values');
+        $this->expectExceptionCode(500);
 
         $video->setAttributes($attr);
     }

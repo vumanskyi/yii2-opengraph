@@ -2,6 +2,7 @@
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
+use umanskyi31\opengraph\Exceptions\OpenGraphException;
 use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\Tags\Profile;
 
@@ -12,14 +13,17 @@ class ProfileTest extends TestCase
      */
     protected $opengraph;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->opengraph = new OpenGraph();
     }
 
-    public function testGettersAndSetters()
+    /**
+     * @test
+     */
+    public function gettersAndSetters()
     {
         $profile = new Profile($this->opengraph);
 
@@ -40,13 +44,15 @@ class ProfileTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Invalid values
-     * @expectedExceptionCode 500
+     * @test
      */
-    public function testSetGenderFailure()
+    public function setterGenderFailure()
     {
         $profile = new Profile($this->opengraph);
+
+        $this->expectException(OpenGraphException::class);
+        $this->expectExceptionMessage('Invalid values');
+        $this->expectExceptionCode(500);
 
         $profile->setGender('No');
     }

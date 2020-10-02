@@ -24,6 +24,27 @@ class TwitterCard extends Tag
     ];
 
     /**
+     * twitter:title.
+     *
+     * @var string
+     */
+    protected $title;
+
+    /**
+     * twitter:description.
+     *
+     * @var string
+     */
+    protected $description;
+
+    /**
+     * twitter:image.
+     *
+     * @var string
+     */
+    protected $image;
+
+    /**
      * @var string
      */
     protected $card;
@@ -37,6 +58,42 @@ class TwitterCard extends Tag
      * @var string
      */
     protected $creator;
+
+    /**
+     * @param string $title
+     *
+     * @return TwitterCard
+     */
+    public function setTitle(string $title): TwitterCard
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @param string $description
+     *
+     * @return TwitterCard
+     */
+    public function setDescription(string $description): TwitterCard
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @param string $image
+     *
+     * @return TwitterCard
+     */
+    public function setImage(string $image): TwitterCard
+    {
+        $this->image = $image;
+
+        return $this;
+    }
 
     /**
      * @param string $site
@@ -102,6 +159,30 @@ class TwitterCard extends Tag
     public function getCard(): string
     {
         return $this->card;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
     }
 
     /**

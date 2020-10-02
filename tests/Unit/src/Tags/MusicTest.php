@@ -2,6 +2,7 @@
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
+use umanskyi31\opengraph\Exceptions\OpenGraphException;
 use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\Tags\Music;
 
@@ -12,15 +13,17 @@ class MusicTest extends TestCase
      */
     protected $opengraph;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->opengraph = new OpenGraph();
     }
 
-
-    public function testSetSong()
+    /**
+     * @test
+     */
+    public function setterSong()
     {
         $music = new Music($this->opengraph);
 
@@ -31,7 +34,10 @@ class MusicTest extends TestCase
         $this->assertSame($url, $music->getSong());
     }
 
-    public function testSetCreator()
+    /**
+     * @test
+     */
+    public function setterCreator()
     {
         $music = new Music($this->opengraph);
 
@@ -43,7 +49,10 @@ class MusicTest extends TestCase
 
     }
 
-    public function testSetAttributeAlbum()
+    /**
+     * @test
+     */
+    public function setterAttributeAlbum()
     {
         $music = new Music($this->opengraph);
 
@@ -59,11 +68,9 @@ class MusicTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Invalid values
-     * @expectedExceptionCode 500
+     * @test
      */
-    public function testSetAttributeAlbumFailure()
+    public function setterAttributeAlbumFailure()
     {
         $music = new Music($this->opengraph);
 
@@ -74,12 +81,17 @@ class MusicTest extends TestCase
             'album:not_valid' => 'test'
         ];
 
-        $music->setAttrAlbum($attr);
+        $this->expectException(OpenGraphException::class);
+        $this->expectExceptionMessage('Invalid values');
+        $this->expectExceptionCode(500);
 
-        $this->assertEquals($attr, $music->getAttrAlbum());
+        $music->setAttrAlbum($attr);
     }
 
-    public function testSetAttributeSong()
+    /**
+     * @test
+     */
+    public function setterAttributeSong()
     {
         $music = new Music($this->opengraph);
 
@@ -96,11 +108,9 @@ class MusicTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Invalid values
-     * @expectedExceptionCode 500
+     * @test
      */
-    public function testSetAttributeSongFailure()
+    public function setterAttributeSongFailure()
     {
         $music = new Music($this->opengraph);
 
@@ -111,10 +121,18 @@ class MusicTest extends TestCase
         ];
 
         $url = 'https://umanskyi.com/test';
+
+        $this->expectException(OpenGraphException::class);
+        $this->expectExceptionMessage('Invalid values');
+        $this->expectExceptionCode(500);
+
         $music->setSong($url, $attr);
     }
 
-    public function testReleaseDate()
+    /**
+     * @test
+     */
+    public function setterReleaseDate()
     {
         $music = new Music($this->opengraph);
 
@@ -125,7 +143,10 @@ class MusicTest extends TestCase
         $this->assertEquals($date, $music->getReleaseDate());
     }
 
-    public function testDuration()
+    /**
+     * @test
+     */
+    public function setterDuration()
     {
         $music = new Music($this->opengraph);
 
@@ -136,7 +157,10 @@ class MusicTest extends TestCase
         $this->assertSame($duration, $music->getDuration());
     }
 
-    public function testAuthor()
+    /**
+     * @test
+     */
+    public function setterAuthor()
     {
         $music = new Music($this->opengraph);
 

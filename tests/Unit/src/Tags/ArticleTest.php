@@ -12,14 +12,17 @@ class ArticleTest extends TestCase
      */
     protected $opengraph;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->opengraph = new OpenGraph();
     }
 
-    public function testSetAuthor()
+    /**
+     * @test
+     */
+    public function setterAuthor()
     {
         $article = new Article($this->opengraph);
 
@@ -30,7 +33,10 @@ class ArticleTest extends TestCase
         $this->assertSame($authors, $article->getAuthor());
     }
 
-    public function testDates()
+    /**
+     * @test
+     */
+    public function setterDates()
     {
         $article = new Article($this->opengraph);
 
@@ -43,7 +49,10 @@ class ArticleTest extends TestCase
         $this->assertEquals($date, $article->getPublishTime());
     }
 
-    public function testGetTags()
+    /**
+     * @test
+     */
+    public function setterTags()
     {
         $article = new Article($this->opengraph);
 
@@ -55,7 +64,10 @@ class ArticleTest extends TestCase
 
     }
 
-    public function testSetSection()
+    /**
+     * @test
+     */
+    public function setterSection()
     {
         $article = new Article($this->opengraph);
 

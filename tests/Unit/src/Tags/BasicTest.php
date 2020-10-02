@@ -12,14 +12,17 @@ class BasicTest extends TestCase
      */
     protected $opengraph;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->opengraph = new OpenGraph();
     }
 
-    public function testSettersAndGetters()
+    /**
+     * @test
+     */
+    public function settersAndGetters()
     {
         $basic = new Basic($this->opengraph);
 
