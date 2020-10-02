@@ -1,5 +1,8 @@
 CHANGE LOG
 ==========
+## v2.0.1 (2/10/2020)
+
+* Add missed fields to TwitterCard
 
 ## V2.0.0 (31/03/2019)
 

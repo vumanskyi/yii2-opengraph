@@ -2,6 +2,7 @@
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
+use umanskyi31\opengraph\Exceptions\OpenGraphException;
 use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\Tags\TwitterCard;
 
@@ -12,14 +13,17 @@ class TwitterCardTest extends TestCase
      */
     protected $opengraph;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->opengraph = new OpenGraph();
     }
 
-    public function testSetSite()
+    /**
+     * @test
+     */
+    public function setterSite()
     {
         $twitterCard = new TwitterCard($this->opengraph);
 
@@ -30,7 +34,10 @@ class TwitterCardTest extends TestCase
         $this->assertSame($site, $twitterCard->getSite());
     }
 
-    public function testSetCreator()
+    /**
+     * @test
+     */
+    public function setterCreator()
     {
         $twitterCard = new TwitterCard($this->opengraph);
 
@@ -42,10 +49,11 @@ class TwitterCardTest extends TestCase
     }
 
     /**
+     * @test
      * @dataProvider dataCardProvider
      * @param $card
      */
-    public function testSetCardSuccess($card)
+    public function setterCardSuccess($card)
     {
         $twitterCard = new TwitterCard($this->opengraph);
 
@@ -68,14 +76,58 @@ class TwitterCardTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Invalid values
-     * @expectedExceptionCode 500
+     * @test
      */
-    public function testSetCardFailure()
+    public function setterCardFailure()
     {
         $twitterCard = new TwitterCard($this->opengraph);
 
+        $this->expectException(OpenGraphException::class);
+        $this->expectExceptionMessage('Invalid values');
+        $this->expectExceptionCode(500);
+
         $twitterCard->setCard('test_card');
+    }
+
+    /**
+     * @test
+     */
+    public function setterTitle()
+    {
+        $twitterCard = new TwitterCard($this->opengraph);
+
+        $title = 'test title';
+
+        $twitterCard->setTitle($title);
+
+        $this->assertEquals($title, $twitterCard->getTitle());
+    }
+
+    /**
+     * @test
+     */
+    public function setterDescription()
+    {
+        $twitterCard = new TwitterCard($this->opengraph);
+
+        $description = 'test description';
+
+        $twitterCard->setDescription($description);
+
+        $this->assertEquals($description, $twitterCard->getDescription());
+    }
+
+    /**
+     * @test
+     */
+    public function setterImage()
+    {
+        $twitterCard = new TwitterCard($this->opengraph);
+
+        $imagePath = 'https://umanskyi.com/image.png';
+
+        $twitterCard->setImage($imagePath);
+
+        $this->assertEquals($imagePath, $twitterCard->getImage());
     }
 }

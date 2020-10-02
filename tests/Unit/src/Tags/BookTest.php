@@ -12,14 +12,17 @@ class BookTest extends TestCase
      */
     protected $opengraph;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->opengraph = new OpenGraph();
     }
 
-    public function testAuthor()
+    /**
+     * @test
+     */
+    public function setterAuthor()
     {
         $book = new Book($this->opengraph);
 
@@ -30,7 +33,10 @@ class BookTest extends TestCase
         $this->assertSame($authors, $book->getAuthor());
     }
 
-    public function testReleaseDate()
+    /**
+     * @test
+     */
+    public function setterReleaseDate()
     {
         $book = new Book($this->opengraph);
 
@@ -41,7 +47,10 @@ class BookTest extends TestCase
         $this->assertEquals($date, $book->getReleaseDate());
     }
 
-    public function testTag()
+    /**
+     * @test
+     */
+    public function setterTag()
     {
         $book = new Book($this->opengraph);
 
@@ -52,7 +61,10 @@ class BookTest extends TestCase
         $this->assertSame($tags, $book->getTag());
     }
 
-    public function testIsbn()
+    /**
+     * @test
+     */
+    public function setterIsbn()
     {
         $book = new Book($this->opengraph);
 

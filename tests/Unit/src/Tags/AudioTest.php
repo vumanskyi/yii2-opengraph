@@ -2,6 +2,7 @@
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
+use umanskyi31\opengraph\Exceptions\OpenGraphException;
 use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\Tags\Audio;
 
@@ -12,14 +13,17 @@ class AudioTest extends TestCase
      */
     protected $opengraph;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->opengraph = new OpenGraph();
     }
 
-    public function testSetUrl()
+    /**
+     * @test
+     */
+    public function setterUrl()
     {
         $audio = new Audio($this->opengraph);
 
@@ -31,7 +35,10 @@ class AudioTest extends TestCase
 
     }
 
-    public function testSetAttribute()
+    /**
+     * @test
+     */
+    public function setterAttribute()
     {
         $audio = new Audio($this->opengraph);
 
@@ -46,11 +53,9 @@ class AudioTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Invalid values
-     * @expectedExceptionCode 500
+     * @test
      */
-    public function testSetAttributeFailure()
+    public function setterAttributeFailure()
     {
         $audio = new Audio($this->opengraph);
 
@@ -60,9 +65,12 @@ class AudioTest extends TestCase
             'not_valid_url' => 'test'
         ];
 
+        $this->expectException(OpenGraphException::class);
+        $this->expectExceptionMessage('Invalid values');
+        $this->expectExceptionCode(500);
+
         $audio->setAttributes($attr);
 
         $this->assertEquals($attr, $audio->getAttributes());
     }
-
 }
