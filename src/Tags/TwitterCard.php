@@ -24,21 +24,21 @@ class TwitterCard extends Tag
     ];
 
     /**
-     * twitter:title
+     * twitter:title.
      *
      * @var string
      */
     protected $title;
 
     /**
-     * twitter:description
+     * twitter:description.
      *
      * @var string
      */
     protected $description;
 
     /**
-     * twitter:image
+     * twitter:image.
      *
      * @var string
      */
@@ -61,6 +61,7 @@ class TwitterCard extends Tag
 
     /**
      * @param string $title
+     *
      * @return TwitterCard
      */
     public function setTitle(string $title): TwitterCard
@@ -72,6 +73,7 @@ class TwitterCard extends Tag
 
     /**
      * @param string $description
+     *
      * @return TwitterCard
      */
     public function setDescription(string $description): TwitterCard
@@ -83,6 +85,7 @@ class TwitterCard extends Tag
 
     /**
      * @param string $image
+     *
      * @return TwitterCard
      */
     public function setImage(string $image): TwitterCard
