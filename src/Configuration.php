@@ -1,13 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
 namespace umanskyi31\opengraph;
 
 /**
  * This is an implementation of configuration for open graph
- * With this configuration you can override exists tags and set own implmentation
+ * With this configuration you can override exists tags and set own implmentation.
  *
  * @author Vladyslav Umanskyi <vladumanskyi@gmail.com>
+ *
  * @version 2.0.1
  */
 interface Configuration
@@ -15,7 +17,7 @@ interface Configuration
     const VERSION = '2.0.1';
 
     /**
-     * Consist all available tags
+     * Consist all available tags.
      *
      * @return array
      */
@@ -23,6 +25,7 @@ interface Configuration
 
     /**
      * @param array $data
+     *
      * @return string|array|void
      */
     public function render(array $data);

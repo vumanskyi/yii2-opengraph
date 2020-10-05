@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace umanskyi31\opengraph;
-
 
 use umanskyi31\opengraph\Tags\Article;
 use umanskyi31\opengraph\Tags\Audio;
@@ -23,21 +23,23 @@ class OpenGraphConfiguration implements Configuration
     public function tags(): array
     {
         return [
-            'getBasic' => new Basic($this),
-            'getImage' => new Image($this),
-            'getMusic' => new Music($this),
-            'getVideo' => new Video($this),
-            'getAudio' => new Audio($this),
-            'getArticle' => new Article($this),
-            'getBook'  => new Book($this),
-            'getProfile' => new Profile($this),
+            'getBasic'       => new Basic($this),
+            'getImage'       => new Image($this),
+            'getMusic'       => new Music($this),
+            'getVideo'       => new Video($this),
+            'getAudio'       => new Audio($this),
+            'getArticle'     => new Article($this),
+            'getBook'        => new Book($this),
+            'getProfile'     => new Profile($this),
             'useTwitterCard' => new TwitterCard($this),
         ];
     }
 
     /**
      * @codeCoverageIgnore
+     *
      * @param array $data
+     *
      * @return array|string|void
      */
     public function render(array $data)
