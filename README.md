@@ -238,7 +238,7 @@ Add video attribute:
       ->render();
 ```
 
-In current version also has the configuration **Twitter Card**
+The current version also has a configuration **Twitter Card**
 
 ```php
 /**
@@ -252,3 +252,7 @@ In current version also has the configuration **Twitter Card**
     ->setCreator('Vlad Umanskyi')
     ->render();
 ```  
+If you want to add own configuration or override some tag, you must implement **umanskyi31\opengraph\Configuration** and add to Yii container. Some example you can find here **umanskyi31\opengraph\OpenGraphConfiguration** 
+
+--------------------------------------------
+If you have any issue please let me know [issue](https://github.com/vumanskyi/yii2-opengraph/issues)

@@ -1,8 +1,13 @@
 CHANGE LOG
 ==========
+## v2.1.0 (5/10/2020)
+
+* Added configuration for Open Graph
+* Updated README.md file
+
 ## v2.0.1 (2/10/2020)
 
-* Add missed fields to TwitterCard
+* Added missed fields to TwitterCard
 * php7.1 doesn't support
 
 ## V2.0.0 (31/03/2019)

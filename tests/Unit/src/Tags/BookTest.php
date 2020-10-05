@@ -3,6 +3,7 @@ namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
 use umanskyi31\opengraph\OpenGraph;
+use umanskyi31\opengraph\OpenGraphConfiguration;
 use umanskyi31\opengraph\Tags\Book;
 
 class BookTest extends TestCase
@@ -16,7 +17,7 @@ class BookTest extends TestCase
     {
         parent::setUp();
 
-        $this->opengraph = new OpenGraph();
+        $this->opengraph = new OpenGraphConfiguration();
     }
 
     /**

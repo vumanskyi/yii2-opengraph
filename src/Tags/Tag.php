@@ -2,6 +2,7 @@
 
 namespace umanskyi31\opengraph\Tags;
 
+use umanskyi31\opengraph\Configuration;
 use umanskyi31\opengraph\OpenGraph;
 
 abstract class Tag
@@ -12,26 +13,26 @@ abstract class Tag
     const OG_PREFIX = 'og:';
 
     /**
-     * @var OpenGraph
+     * @var Configuration
      */
-    private $openGraph;
+    private $configuration;
 
     /**
      * TwitterCard constructor.
      *
-     * @param OpenGraph $openGraph
+     * @param Configuration $configuration
      */
-    public function __construct(OpenGraph $openGraph)
+    public function __construct(Configuration $configuration)
     {
-        $this->openGraph = $openGraph;
+        $this->configuration = $configuration;
     }
 
     /**
-     * @return OpenGraph
+     * @return Configuration
      */
-    public function getOpenGraph(): OpenGraph
+    public function getOpenGraph(): Configuration
     {
-        return $this->openGraph;
+        return $this->configuration;
     }
 
     /**

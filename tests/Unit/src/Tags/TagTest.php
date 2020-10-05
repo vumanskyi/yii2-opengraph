@@ -3,6 +3,7 @@ namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
 use umanskyi31\opengraph\OpenGraph;
+use umanskyi31\opengraph\OpenGraphConfiguration;
 use umanskyi31\opengraph\Tags\Tag;
 
 class TagTest extends TestCase
@@ -10,7 +11,7 @@ class TagTest extends TestCase
 
     public function testConstruct()
     {
-        $opengraph = new OpenGraph();
+        $opengraph = new OpenGraphConfiguration();
         $tag = new TagMock($opengraph);
 
         $this->assertSame($opengraph, $tag->getOpenGraph());

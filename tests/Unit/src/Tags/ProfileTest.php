@@ -4,6 +4,7 @@ namespace umanskyi31\opengraph\test\Unit\src\Tags;
 use PHPUnit\Framework\TestCase;
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
 use umanskyi31\opengraph\OpenGraph;
+use umanskyi31\opengraph\OpenGraphConfiguration;
 use umanskyi31\opengraph\Tags\Profile;
 
 class ProfileTest extends TestCase
@@ -17,7 +18,7 @@ class ProfileTest extends TestCase
     {
         parent::setUp();
 
-        $this->opengraph = new OpenGraph();
+        $this->opengraph = new OpenGraphConfiguration();
     }
 
     /**

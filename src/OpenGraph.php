@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace umanskyi31\opengraph;
 
+use umanskyi31\opengraph\Exceptions\OpenGraphException;
 use umanskyi31\opengraph\Tags\Article;
 use umanskyi31\opengraph\Tags\Audio;
 use umanskyi31\opengraph\Tags\Basic;
@@ -13,150 +15,48 @@ use umanskyi31\opengraph\Tags\TwitterCard;
 use umanskyi31\opengraph\Tags\Video;
 use Yii;
 
+/**
+ * @method Article getArticle()
+ * @method Image getImage()
+ * @method Audio getAudio()
+ * @method Book getBook()
+ * @method Basic getBasic()
+ * @method Music getMusic()
+ * @method Profile getProfile()
+ * @method Video getVideo()
+ * @method TwitterCard useTwitterCard()
+ */
 class OpenGraph
 {
-    /**
-     * @var Article
-     */
-    protected $article;
+
+    protected $configuration;
 
     /**
-     * @var Audio
+     * OpenGraph constructor.
      */
-    protected $audio;
-
-    /**
-     * @var Basic
-     */
-    protected $basic;
-
-    /**
-     * @var Book
-     */
-    protected $book;
-
-    /**
-     * @var Image
-     */
-    protected $image;
-
-    /**
-     * @var Music
-     */
-    protected $music;
-
-    /**
-     * @var Profile
-     */
-    protected $profile;
-
-    /**
-     * @var Video
-     */
-    protected $video;
-
-    /**
-     * @var TwitterCard
-     */
-    protected $twitterCard;
-
-    /**
-     * @return Basic
-     */
-    public function getBasic(): Basic
+    public function __construct()
     {
-        $this->basic = new Basic($this);
+        Yii::$container->setSingletons([
+            Configuration::class => OpenGraphConfiguration::class,
+        ]);
 
-        return $this->basic;
+        $this->configuration = Yii::$container->get(Configuration::class);
     }
 
     /**
-     * @return Image
+     * @param string $name
+     * @param array $arguments
+     * @return object
+     * @throws OpenGraphException
      */
-    public function getImage(): Image
+    public function __call(string $name, array $arguments = [])
     {
-        $this->image = new Image($this);
+        $tags = $this->configuration->tags();
 
-        return $this->image;
-    }
+        if (!array_key_exists($name, $tags)) {
+            throw new OpenGraphException(sprintf('The method %s does not exist', $name));
+        }
 
-    /**
-     * @return Music
-     */
-    public function getMusic(): Music
-    {
-        $this->music = new Music($this);
-
-        return $this->music;
-    }
-
-    /**
-     * @return Video
-     */
-    public function getVideo(): Video
-    {
-        $this->video = new Video($this);
-
-        return $this->video;
-    }
-
-    /**
-     * @return Audio
-     */
-    public function getAudio(): Audio
-    {
-        $this->audio = new Audio($this);
-
-        return $this->audio;
-    }
-
-    /**
-     * @return Article
-     */
-    public function getArticle(): Article
-    {
-        $this->article = new Article($this);
-
-        return $this->article;
-    }
-
-    /**
-     * @return Book
-     */
-    public function getBook(): Book
-    {
-        $this->book = new Book($this);
-
-        return $this->book;
-    }
-
-    /**
-     * @return Profile
-     */
-    public function getProfile(): Profile
-    {
-        $this->profile = new Profile($this);
-
-        return $this->profile;
-    }
-
-    /**
-     * @return TwitterCard
-     */
-    public function useTwitterCard(): TwitterCard
-    {
-        $this->twitterCard = new TwitterCard($this);
-
-        return $this->twitterCard;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     *
-     * @param array $data
-     */
-    public function render(array $data)
-    {
-        Yii::$app->view->registerMetaTag($data);
+        return $tags[$name];
     }
 }
