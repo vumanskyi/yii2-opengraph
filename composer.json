@@ -4,11 +4,11 @@
     "keywords": ["yii2", "extension", "component", "open-graph", "opengraph", "facebook", "twitter-card", "seo", "Vlad Umanskyi", "VladUmanskyi"],
     "homepage": "https://github.com/vumanskyi/yii2-opengraph",
     "type": "yii2-extension",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "license": "MIT",
     "authors": [
         {
-            "name": "Vlad Umanskyi",
+            "name": "Vladyslav Umanskyi",
             "email": "vladumanskyi@gmail.com"
         }
     ],
