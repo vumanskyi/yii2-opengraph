@@ -3,7 +3,6 @@
 namespace umanskyi31\opengraph\Tags;
 
 use umanskyi31\opengraph\Configuration;
-use umanskyi31\opengraph\OpenGraph;
 
 abstract class Tag
 {

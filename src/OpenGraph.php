@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace umanskyi31\opengraph;
@@ -16,19 +17,18 @@ use umanskyi31\opengraph\Tags\Video;
 use Yii;
 
 /**
- * @method Article getArticle()
- * @method Image getImage()
- * @method Audio getAudio()
- * @method Book getBook()
- * @method Basic getBasic()
- * @method Music getMusic()
- * @method Profile getProfile()
- * @method Video getVideo()
+ * @method Article     getArticle()
+ * @method Image       getImage()
+ * @method Audio       getAudio()
+ * @method Book        getBook()
+ * @method Basic       getBasic()
+ * @method Music       getMusic()
+ * @method Profile     getProfile()
+ * @method Video       getVideo()
  * @method TwitterCard useTwitterCard()
  */
 class OpenGraph
 {
-
     protected $configuration;
 
     /**
@@ -45,9 +45,11 @@ class OpenGraph
 
     /**
      * @param string $name
-     * @param array $arguments
-     * @return object
+     * @param array  $arguments
+     *
      * @throws OpenGraphException
+     *
+     * @return object
      */
     public function __call(string $name, array $arguments = [])
     {
