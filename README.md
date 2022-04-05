@@ -259,4 +259,4 @@ The current version also has a configuration **Twitter Card**
 If you want to add own configuration or override some tag, you must implement **umanskyi31\opengraph\Configuration** and add to Yii container. Some example you can find here **umanskyi31\opengraph\OpenGraphConfiguration** 
 
 --------------------------------------------
-If you have any issue please let me know [issue](https://github.com/vumanskyi/yii2-opengraph/issues)
+If you have any [issue](https://github.com/vumanskyi/yii2-opengraph/issues) please let me know.
