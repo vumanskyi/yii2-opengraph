@@ -39,7 +39,7 @@ abstract class Tag
      * @param string $prefixKey
      * @param bool   $useKey
      */
-    public function additionalRender(array $data = [], string $prefixKey, bool $useKey = false)
+    public function additionalRender(array $data = [], string $prefixKey = '', bool $useKey = false)
     {
         foreach ($data as $key => $value) {
             if (empty($value)) {

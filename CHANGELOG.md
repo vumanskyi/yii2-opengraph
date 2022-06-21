@@ -1,5 +1,9 @@
 CHANGE LOG
 ==========
+## v2.1.1 (21/06/2022)
+
+* Add default string value for $prefixKey
+
 ## v2.1.0 (5/10/2020)
 
 * Added configuration for Open Graph
