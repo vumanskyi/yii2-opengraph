@@ -1,54 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace umanskyi31\opengraph\Tags;
 
 class Basic extends Tag
 {
-    /**
-     * @var string
-     */
-    protected $title;
+    protected string $title;
 
-    /**
-     * @var string
-     */
-    protected $type;
+    protected string $type;
 
-    /**
-     * @var string
-     */
-    protected $url;
+    protected string $url;
 
-    /**
-     * @var string
-     */
-    protected $site_name;
+    protected string $site_name;
 
-    /**
-     * @var string
-     */
-    protected $description;
+    protected string $description;
 
-    /**
-     * @var string
-     */
-    protected $determiner;
+    protected string $determiner;
 
-    /**
-     * @var string
-     */
-    protected $locale;
+    protected string $locale;
 
-    /**
-     * @var array
-     */
-    protected $localAlternate = [];
+    protected array $localAlternate = [];
 
-    /**
-     * @param string $url
-     *
-     * @return Basic
-     */
     public function setUrl(string $url): Basic
     {
         $this->url = $url;
@@ -56,19 +29,11 @@ class Basic extends Tag
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @param string $locale
-     *
-     * @return Basic
-     */
     public function setLocale(string $locale): Basic
     {
         $this->locale = $locale;
@@ -76,19 +41,11 @@ class Basic extends Tag
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSiteName(): string
     {
         return $this->site_name;
     }
 
-    /**
-     * @param string $site_name
-     *
-     * @return Basic
-     */
     public function setSiteName(string $site_name): Basic
     {
         $this->site_name = $site_name;
@@ -96,19 +53,11 @@ class Basic extends Tag
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getLocale(): string
     {
         return $this->locale;
     }
 
-    /**
-     * @param string $title
-     *
-     * @return Basic
-     */
     public function setTitle(string $title): Basic
     {
         $this->title = $title;
@@ -116,19 +65,11 @@ class Basic extends Tag
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $type
-     *
-     * @return Basic
-     */
     public function setType(string $type): Basic
     {
         $this->type = $type;
@@ -136,11 +77,6 @@ class Basic extends Tag
         return $this;
     }
 
-    /**
-     * @param array $localAlternate
-     *
-     * @return Basic
-     */
     public function setLocalAlternate(array $localAlternate): Basic
     {
         $this->localAlternate = $localAlternate;
@@ -148,19 +84,11 @@ class Basic extends Tag
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getLocalAlternate(): array
     {
         return $this->localAlternate;
     }
 
-    /**
-     * @param string $description
-     *
-     * @return Basic
-     */
     public function setDescription(string $description): Basic
     {
         $this->description = $description;
@@ -168,35 +96,21 @@ class Basic extends Tag
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @return string
-     */
     public function getDeterminer(): string
     {
         return $this->determiner;
     }
 
-    /**
-     * @param string $determiner
-     *
-     * @return Basic
-     */
     public function setDeterminer(string $determiner): Basic
     {
         $this->determiner = $determiner;
@@ -214,8 +128,8 @@ class Basic extends Tag
             }
 
             $this->getOpenGraph()->render([
-                'property'      => self::OG_PREFIX.$key,
-                'content'       => $property,
+                'property' => self::OG_PREFIX.$key,
+                'content' => $property,
             ]);
         }
 

@@ -1,18 +1,15 @@
 <?php
+
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
-use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\OpenGraphConfiguration;
 use umanskyi31\opengraph\Tags\Audio;
 
 class AudioTest extends TestCase
 {
-    /**
-     * @var OpenGraph
-     */
-    protected $opengraph;
+    protected OpenGraphConfiguration $opengraph;
 
     protected function setUp(): void
     {
@@ -21,10 +18,7 @@ class AudioTest extends TestCase
         $this->opengraph = new OpenGraphConfiguration();
     }
 
-    /**
-     * @test
-     */
-    public function setterUrl()
+    public function testSetterUrl()
     {
         $audio = new Audio($this->opengraph);
 
@@ -33,19 +27,15 @@ class AudioTest extends TestCase
         $audio->setUrl($url);
 
         $this->assertSame($url, $audio->getUrl());
-
     }
 
-    /**
-     * @test
-     */
-    public function setterAttribute()
+    public function testSetterAttribute()
     {
         $audio = new Audio($this->opengraph);
 
         $attr = [
-            'type'       => 'test',
-            'secure_url' => 'https://umanskyi.com/test.mp3'
+            'type' => 'test',
+            'secure_url' => 'https://umanskyi.com/test.mp3',
         ];
 
         $audio->setAttributes($attr);
@@ -53,17 +43,14 @@ class AudioTest extends TestCase
         $this->assertEquals($attr, $audio->getAttributes());
     }
 
-    /**
-     * @test
-     */
-    public function setterAttributeFailure()
+    public function testSetterAttributeFailure()
     {
         $audio = new Audio($this->opengraph);
 
         $attr = [
-            'type'       => 'test',
+            'type' => 'test',
             'secure_url' => 'https://umanskyi.com/test.mp3',
-            'not_valid_url' => 'test'
+            'not_valid_url' => 'test',
         ];
 
         $this->expectException(OpenGraphException::class);

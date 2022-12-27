@@ -1,18 +1,15 @@
 <?php
+
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
-use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\OpenGraphConfiguration;
 use umanskyi31\opengraph\Tags\Image;
 
 class ImageTest extends TestCase
 {
-    /**
-     * @var OpenGraph
-     */
-    protected $opengraph;
+    protected OpenGraphConfiguration $opengraph;
 
     protected function setUp(): void
     {
@@ -21,10 +18,7 @@ class ImageTest extends TestCase
         $this->opengraph = new OpenGraphConfiguration();
     }
 
-    /**
-     * @test
-     */
-    public function setterUrl()
+    public function testSetterUrl()
     {
         $audio = new Image($this->opengraph);
 
@@ -33,22 +27,18 @@ class ImageTest extends TestCase
         $audio->setUrl($url);
 
         $this->assertSame($url, $audio->getUrl());
-
     }
 
-    /**
-     * @test
-     */
-    public function setterAttribute()
+    public function testSetterAttribute()
     {
         $audio = new Image($this->opengraph);
 
         $attr = [
-            'width'      => 10,
-            'height'     => 10,
-            'type'       => 'jpg',
-            'alt'        => 'Test',
-            'secure_url' => 'https://umanskyi.com/test.png'
+            'width' => 10,
+            'height' => 10,
+            'type' => 'jpg',
+            'alt' => 'Test',
+            'secure_url' => 'https://umanskyi.com/test.png',
         ];
 
         $audio->setAttributes($attr);
@@ -56,17 +46,14 @@ class ImageTest extends TestCase
         $this->assertEquals($attr, $audio->getAttributes());
     }
 
-    /**
-     * @test
-     */
-    public function setterAttributeFailure()
+    public function testSetterAttributeFailure()
     {
         $audio = new Image($this->opengraph);
 
         $attr = [
-            'type'       => 'jpg',
+            'type' => 'jpg',
             'secure_url' => 'https://umanskyi.com/test.jpg',
-            'not_valid_url' => 'test'
+            'not_valid_url' => 'test',
         ];
 
         $this->expectException(OpenGraphException::class);

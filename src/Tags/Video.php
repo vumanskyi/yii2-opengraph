@@ -1,40 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace umanskyi31\opengraph\Tags;
 
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
 
 class Video extends Tag
 {
-    /**
-     * @var string
-     */
-    protected $url;
+    protected string $url;
 
-    /**
-     * @var array
-     */
-    protected $attributes = [];
+    protected array $attributes = [];
 
-    /**
-     * @var array
-     */
-    protected $validAttributes = [
+    protected array $validAttributes = [
         'secure_url',
         'width',
         'height',
         'type',
     ];
 
-    /**
-     * @var array
-     */
-    protected $additionalAttributes = [];
+    protected array $additionalAttributes = [];
 
-    /**
-     * @var array
-     */
-    protected $validAdditionalAttr = [
+    protected array $validAdditionalAttr = [
         'actor',
         'actor:role',
         'director',
@@ -45,19 +32,11 @@ class Video extends Tag
         'series',
     ];
 
-    /**
-     * @return mixed
-     */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @param string $url
-     *
-     * @return Video
-     */
     public function setUrl(string $url): Video
     {
         $this->url = $url;
@@ -65,19 +44,12 @@ class Video extends Tag
         return $this;
     }
 
-    /**
-     * @param array $attributes
-     *
-     * @throws OpenGraphException
-     *
-     * @return Image
-     */
     public function setAttributes(array $attributes): Video
     {
         $validAttributes = $this->validAttributes;
 
-        array_map(function ($key, $value) use ($validAttributes) {
-            if (empty($key) || !in_array($key, $validAttributes)) {
+        array_map(function ($key) use ($validAttributes) {
+            if (empty($key) || ! in_array($key, $validAttributes)) {
                 throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attributes), $attributes);
@@ -87,17 +59,12 @@ class Video extends Tag
         return $this;
     }
 
-    /**
-     * @param array $attributes
-     *
-     * @return Video
-     */
     public function setAdditionalAttributes(array $attributes): Video
     {
         $validAttributes = $this->validAdditionalAttr;
 
-        array_map(function ($key, $value) use ($validAttributes) {
-            if (empty($key) || !in_array($key, $validAttributes)) {
+        array_map(function ($key) use ($validAttributes) {
+            if (empty($key) || ! in_array($key, $validAttributes)) {
                 throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attributes), $attributes);
@@ -107,17 +74,11 @@ class Video extends Tag
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getAdditionalAttributes(): array
     {
         return $this->additionalAttributes;
     }
 
-    /**
-     * @return array
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
@@ -127,10 +88,10 @@ class Video extends Tag
     {
         $this->getOpenGraph()->render([
             'property' => self::OG_PREFIX.'video',
-            'content'  => $this->getUrl(),
+            'content' => $this->getUrl(),
         ]);
 
-        $this->additionalRender($this->attributes, self::OG_PREFIX.'video:', true);
+        $this->additionalRender($this->attributes, self::OG_PREFIX . 'video:', true);
         $this->additionalRender($this->additionalAttributes, 'video:', true);
     }
 }

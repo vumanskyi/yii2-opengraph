@@ -1,38 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace umanskyi31\opengraph\Tags;
+
+use umanskyi31\opengraph\Converters\DateTimeToStringConverter;
 
 class Article extends Tag
 {
     /**
-     * @var \DateTime
-     */
-    protected $publish_time;
-
-    /**
-     * @var \DateTime
-     */
-    protected $modified_time;
-
-    /**
-     * @var \DateTime
-     */
-    protected $expiration_time;
-
-    /**
      * @var string[]
      */
-    protected $author = [];
+    protected array $author = [];
 
     /**
      * @var string
      */
-    protected $section;
+    protected string $section;
 
     /**
      * @var string[]
      */
-    protected $tag = [];
+    protected array $tag = [];
+
+    protected \DateTime $publish_time;
+
+    protected \DateTime $modified_time;
+
+    protected \DateTime $expiration_time;
 
     /**
      * @return string[]
@@ -42,33 +37,21 @@ class Article extends Tag
         return $this->author;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getExpirationTime(): \DateTime
     {
-        return new \DateTime($this->expiration_time);
+        return $this->expiration_time;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getModifiedTime(): \DateTime
     {
-        return new \DateTime($this->modified_time);
+        return $this->modified_time;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getPublishTime(): \DateTime
     {
-        return new \DateTime($this->publish_time);
+        return $this->publish_time;
     }
 
-    /**
-     * @return string
-     */
     public function getSection(): string
     {
         return $this->section;
@@ -106,38 +89,23 @@ class Article extends Tag
         return $this;
     }
 
-    /**
-     * @param \DateTime $expiration_time
-     *
-     * @return Article
-     */
     public function setExpirationTime(\DateTime $expiration_time): Article
     {
-        $this->expiration_time = $expiration_time->format('Y-m-d');
+        $this->expiration_time = $expiration_time;
 
         return $this;
     }
 
-    /**
-     * @param \DateTime $modified_time
-     *
-     * @return Article
-     */
     public function setModifiedTime(\DateTime $modified_time): Article
     {
-        $this->modified_time = $modified_time->format('Y-m-d');
+        $this->modified_time = $modified_time;
 
         return $this;
     }
 
-    /**
-     * @param \DateTime $publish_time
-     *
-     * @return Article
-     */
     public function setPublishTime(\DateTime $publish_time): Article
     {
-        $this->publish_time = $publish_time->format('Y-m-d');
+        $this->publish_time = $publish_time;
 
         return $this;
     }
@@ -164,8 +132,10 @@ class Article extends Tag
             }
 
             $this->getOpenGraph()->render([
-                'property'  => 'article:'.$key,
-                'content'   => $property,
+                'property' => 'article:'.$key,
+                'content' => $property instanceof \DateTimeInterface
+                    ? DateTimeToStringConverter::convert($property)
+                    : $property,
             ]);
         }
 

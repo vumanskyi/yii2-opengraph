@@ -1,18 +1,15 @@
 <?php
+
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
-use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\OpenGraphConfiguration;
 use umanskyi31\opengraph\Tags\Music;
 
 class MusicTest extends TestCase
 {
-    /**
-     * @var OpenGraph
-     */
-    protected $opengraph;
+    protected OpenGraphConfiguration $opengraph;
 
     protected function setUp(): void
     {
@@ -21,10 +18,7 @@ class MusicTest extends TestCase
         $this->opengraph = new OpenGraphConfiguration();
     }
 
-    /**
-     * @test
-     */
-    public function setterSong()
+    public function testSetterSong()
     {
         $music = new Music($this->opengraph);
 
@@ -35,10 +29,7 @@ class MusicTest extends TestCase
         $this->assertSame($url, $music->getSong());
     }
 
-    /**
-     * @test
-     */
-    public function setterCreator()
+    public function testSetterCreator()
     {
         $music = new Music($this->opengraph);
 
@@ -47,20 +38,16 @@ class MusicTest extends TestCase
         $music->setCreator($url);
 
         $this->assertSame($url, $music->getCreator());
-
     }
 
-    /**
-     * @test
-     */
-    public function setterAttributeAlbum()
+    public function testSetterAttributeAlbum()
     {
         $music = new Music($this->opengraph);
 
         $attr = [
-            'album'         => 'Test Album',
-            'album:disc'    => "Second",
-            'album:track'   => 'second',
+            'album' => 'Test Album',
+            'album:disc' => "Second",
+            'album:track' => 'second',
         ];
 
         $music->setAttrAlbum($attr);
@@ -68,18 +55,15 @@ class MusicTest extends TestCase
         $this->assertEquals($attr, $music->getAttrAlbum());
     }
 
-    /**
-     * @test
-     */
-    public function setterAttributeAlbumFailure()
+    public function testSetterAttributeAlbumFailure()
     {
         $music = new Music($this->opengraph);
 
         $attr = [
-            'album'         => 'Test Album',
-            'album:disc'    => 'Second',
-            'album:track'   => 'second',
-            'album:not_valid' => 'test'
+            'album' => 'Test Album',
+            'album:disc' => 'Second',
+            'album:track' => 'second',
+            'album:not_valid' => 'test',
         ];
 
         $this->expectException(OpenGraphException::class);
@@ -89,16 +73,13 @@ class MusicTest extends TestCase
         $music->setAttrAlbum($attr);
     }
 
-    /**
-     * @test
-     */
-    public function setterAttributeSong()
+    public function testSetterAttributeSong()
     {
         $music = new Music($this->opengraph);
 
         $attr = [
-            'song:disc'    => 'Second',
-            'song:track'   => 'second',
+            'song:disc' => 'Second',
+            'song:track' => 'second',
         ];
 
         $url = 'https://umanskyi.com/test';
@@ -108,17 +89,14 @@ class MusicTest extends TestCase
         $this->assertEquals($attr, $music->getAttrSong());
     }
 
-    /**
-     * @test
-     */
-    public function setterAttributeSongFailure()
+    public function testSetterAttributeSongFailure()
     {
         $music = new Music($this->opengraph);
 
         $attr = [
-            'song:disc'    => 'Second',
-            'song:track'   => 'second',
-            'song:not_valid' => 'test'
+            'song:disc' => 'Second',
+            'song:track' => 'second',
+            'song:not_valid' => 'test',
         ];
 
         $url = 'https://umanskyi.com/test';
@@ -130,10 +108,7 @@ class MusicTest extends TestCase
         $music->setSong($url, $attr);
     }
 
-    /**
-     * @test
-     */
-    public function setterReleaseDate()
+    public function testSetterReleaseDate()
     {
         $music = new Music($this->opengraph);
 
@@ -144,10 +119,7 @@ class MusicTest extends TestCase
         $this->assertEquals($date, $music->getReleaseDate());
     }
 
-    /**
-     * @test
-     */
-    public function setterDuration()
+    public function testSetterDuration()
     {
         $music = new Music($this->opengraph);
 
@@ -158,10 +130,7 @@ class MusicTest extends TestCase
         $this->assertSame($duration, $music->getDuration());
     }
 
-    /**
-     * @test
-     */
-    public function setterAuthor()
+    public function testSetterAuthor()
     {
         $music = new Music($this->opengraph);
 

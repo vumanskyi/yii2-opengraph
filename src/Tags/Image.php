@@ -1,25 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace umanskyi31\opengraph\Tags;
 
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
 
 class Image extends Tag
 {
-    /**
-     * @var string
-     */
-    protected $url;
+    protected string $url;
 
-    /**
-     * @var array
-     */
-    protected $attributes = [];
+    protected array $attributes = [];
 
-    /**
-     * @var array
-     */
-    protected $validAttributes = [
+    protected array $validAttributes = [
         'secure_url',
         'width',
         'height',
@@ -27,19 +20,11 @@ class Image extends Tag
         'alt',
     ];
 
-    /**
-     * @return mixed
-     */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @param string $url
-     *
-     * @return Image
-     */
     public function setUrl(string $url): Image
     {
         $this->url = $url;
@@ -47,17 +32,12 @@ class Image extends Tag
         return $this;
     }
 
-    /**
-     * @param array $attributes
-     *
-     * @return Image
-     */
     public function setAttributes(array $attributes): Image
     {
         $validAttributes = $this->validAttributes;
 
-        array_map(function ($key, $value) use ($validAttributes) {
-            if (empty($key) || !in_array($key, $validAttributes)) {
+        array_map(function ($key) use ($validAttributes) {
+            if (empty($key) || ! in_array($key, $validAttributes)) {
                 throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attributes), $attributes);
@@ -67,9 +47,6 @@ class Image extends Tag
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
@@ -78,10 +55,10 @@ class Image extends Tag
     public function render()
     {
         $this->getOpenGraph()->render([
-            'property' => self::OG_PREFIX.'image',
-            'content'  => $this->getUrl(),
+            'property' => self::OG_PREFIX . 'image',
+            'content' => $this->getUrl(),
         ]);
 
-        $this->additionalRender($this->getAttributes(), self::OG_PREFIX.'image:', true);
+        $this->additionalRender($this->getAttributes(), self::OG_PREFIX . 'image:', true);
     }
 }

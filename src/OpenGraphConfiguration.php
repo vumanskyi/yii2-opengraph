@@ -17,20 +17,17 @@ use Yii;
 
 class OpenGraphConfiguration implements Configuration
 {
-    /**
-     * @return array
-     */
     public function tags(): array
     {
         return [
-            'getBasic'       => new Basic($this),
-            'getImage'       => new Image($this),
-            'getMusic'       => new Music($this),
-            'getVideo'       => new Video($this),
-            'getAudio'       => new Audio($this),
-            'getArticle'     => new Article($this),
-            'getBook'        => new Book($this),
-            'getProfile'     => new Profile($this),
+            'getBasic' => new Basic($this),
+            'getImage' => new Image($this),
+            'getMusic' => new Music($this),
+            'getVideo' => new Video($this),
+            'getAudio' => new Audio($this),
+            'getArticle' => new Article($this),
+            'getBook' => new Book($this),
+            'getProfile' => new Profile($this),
             'useTwitterCard' => new TwitterCard($this),
         ];
     }

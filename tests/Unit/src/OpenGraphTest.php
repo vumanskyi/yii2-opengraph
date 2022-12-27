@@ -1,4 +1,5 @@
 <?php
+
 namespace umanskyi31\opengraph\test\Unit\src;
 
 use PHPUnit\Framework\TestCase;
@@ -16,10 +17,7 @@ use umanskyi31\opengraph\Tags\Video;
 
 class OpenGraphTest extends TestCase
 {
-    /**
-     * @var OpenGraph
-     */
-    protected $opengraph;
+    protected OpenGraph $opengraph;
 
     protected function setUp(): void
     {
@@ -28,10 +26,7 @@ class OpenGraphTest extends TestCase
         $this->opengraph = new OpenGraph();
     }
 
-    /**
-     * @test
-     */
-    public function checkGetters()
+    public function testCheckGetters()
     {
         $this->assertInstanceOf(OpenGraph::class, $this->opengraph);
         $this->assertInstanceOf(Basic::class, $this->opengraph->getBasic());
@@ -45,10 +40,7 @@ class OpenGraphTest extends TestCase
         $this->assertInstanceOf(TwitterCard::class, $this->opengraph->useTwitterCard());
     }
 
-    /**
-     * @test
-     */
-    public function notExistsMethod()
+    public function testNotExistsMethod()
     {
         $this->expectException(OpenGraphException::class);
         $this->expectExceptionMessage('The method getTest does not exist');

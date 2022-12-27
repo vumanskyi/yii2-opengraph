@@ -1,5 +1,15 @@
 CHANGE LOG
 ==========
+## v3.0.0 (27/12/2022)
+
+* Fix issues
+* Typed properties
+* Clean code from unnecessary annotations
+
+## v2.1.1 (21/06/2022)
+
+* Add default string value for $prefixKey
+
 ## v2.1.0 (5/10/2020)
 
 * Added configuration for Open Graph

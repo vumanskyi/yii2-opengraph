@@ -1,18 +1,15 @@
 <?php
+
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
-use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\OpenGraphConfiguration;
 use umanskyi31\opengraph\Tags\Video;
 
 class VideoTest extends TestCase
 {
-    /**
-     * @var OpenGraph
-     */
-    protected $opengraph;
+    protected OpenGraphConfiguration $opengraph;
 
     protected function setUp(): void
     {
@@ -21,10 +18,7 @@ class VideoTest extends TestCase
         $this->opengraph = new OpenGraphConfiguration();
     }
 
-    /**
-     * @test
-     */
-    public function setterUrl()
+    public function testSetterUrl()
     {
         $video = new Video($this->opengraph);
 
@@ -33,20 +27,16 @@ class VideoTest extends TestCase
         $video->setUrl($url);
 
         $this->assertSame($url, $video->getUrl());
-
     }
 
-    /**
-     * @test
-     */
-    public function setterAttribute()
+    public function testSetterAttribute()
     {
         $video = new Video($this->opengraph);
 
         $attr = [
-            'type'       => 'test',
+            'type' => 'test',
             'secure_url' => 'https://umanskyi.com/test.mp4',
-            'width'      => 1800,
+            'width' => 1800,
             'height' => 1500,
         ];
 
@@ -55,17 +45,14 @@ class VideoTest extends TestCase
         $this->assertEquals($attr, $video->getAttributes());
     }
 
-    /**
-     * @test
-     */
-    public function setterAttributeFailure()
+    public function testSetterAttributeFailure()
     {
         $video = new Video($this->opengraph);
 
         $attr = [
-            'type'       => 'test',
+            'type' => 'test',
             'secure_url' => 'https://umanskyi.com/test.mp4',
-            'not_valid_url' => 'test'
+            'not_valid_url' => 'test',
         ];
 
         $this->expectException(OpenGraphException::class);
@@ -75,22 +62,19 @@ class VideoTest extends TestCase
         $video->setAttributes($attr);
     }
 
-    /**
-     * @test
-     */
-    public function setterAdditionalAttribute()
+    public function testSetterAdditionalAttribute()
     {
         $video = new Video($this->opengraph);
 
         $attr = [
-            'actor'         => 'John Doe',
-            'actor:role'    => 'Main actor',
-            'director'      => 'John Doe',
-            'writer'        => 'John Doe',
-            'duration'      => 1024,
-            'release_date'  => '2019-10-10',
-            'tag'           => 'fantastic',
-            'series'        => 1,
+            'actor' => 'John Doe',
+            'actor:role' => 'Main actor',
+            'director' => 'John Doe',
+            'writer' => 'John Doe',
+            'duration' => 1024,
+            'release_date' => '2019-10-10',
+            'tag' => 'fantastic',
+            'series' => 1,
         ];
 
         $video->setAdditionalAttributes($attr);
@@ -98,23 +82,20 @@ class VideoTest extends TestCase
         $this->assertEquals($attr, $video->getAdditionalAttributes());
     }
 
-    /**
-     * @test
-     */
-    public function setterAdditionalAttributeFailure()
+    public function testSetterAdditionalAttributeFailure()
     {
         $video = new Video($this->opengraph);
 
         $attr = [
-            'actor'         => 'John Doe',
-            'actor:role'    => 'Main actor',
-            'director'      => 'John Doe',
-            'writer'        => 'John Doe',
-            'duration'      => 1024,
-            'release_date'  => '2019-10-10',
-            'tag'           => 'fantastic',
-            'series'        => 1,
-            'not_valid'     => true,
+            'actor' => 'John Doe',
+            'actor:role' => 'Main actor',
+            'director' => 'John Doe',
+            'writer' => 'John Doe',
+            'duration' => 1024,
+            'release_date' => '2019-10-10',
+            'tag' => 'fantastic',
+            'series' => 1,
+            'not_valid' => true,
         ];
 
         $this->expectException(OpenGraphException::class);

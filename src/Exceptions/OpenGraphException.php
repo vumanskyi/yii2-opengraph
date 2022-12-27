@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace umanskyi31\opengraph\Exceptions;
 
 use Throwable;

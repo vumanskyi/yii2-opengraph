@@ -1,18 +1,15 @@
 <?php
+
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
 use umanskyi31\opengraph\Exceptions\OpenGraphException;
-use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\OpenGraphConfiguration;
 use umanskyi31\opengraph\Tags\TwitterCard;
 
 class TwitterCardTest extends TestCase
 {
-    /**
-     * @var OpenGraph
-     */
-    protected $opengraph;
+    protected OpenGraphConfiguration $opengraph;
 
     protected function setUp(): void
     {
@@ -21,10 +18,7 @@ class TwitterCardTest extends TestCase
         $this->opengraph = new OpenGraphConfiguration();
     }
 
-    /**
-     * @test
-     */
-    public function setterSite()
+    public function testSetterSite()
     {
         $twitterCard = new TwitterCard($this->opengraph);
 
@@ -35,10 +29,7 @@ class TwitterCardTest extends TestCase
         $this->assertSame($site, $twitterCard->getSite());
     }
 
-    /**
-     * @test
-     */
-    public function setterCreator()
+    public function testSetterCreator()
     {
         $twitterCard = new TwitterCard($this->opengraph);
 
@@ -50,11 +41,10 @@ class TwitterCardTest extends TestCase
     }
 
     /**
-     * @test
      * @dataProvider dataCardProvider
      * @param $card
      */
-    public function setterCardSuccess($card)
+    public function testSetterCardSuccess($card)
     {
         $twitterCard = new TwitterCard($this->opengraph);
 
@@ -72,14 +62,11 @@ class TwitterCardTest extends TestCase
             ['summary'],
             ['summary_large_image'],
             ['app'],
-            ['player']
+            ['player'],
         ];
     }
 
-    /**
-     * @test
-     */
-    public function setterCardFailure()
+    public function testSetterCardFailure()
     {
         $twitterCard = new TwitterCard($this->opengraph);
 
@@ -90,10 +77,7 @@ class TwitterCardTest extends TestCase
         $twitterCard->setCard('test_card');
     }
 
-    /**
-     * @test
-     */
-    public function setterTitle()
+    public function testSetterTitle()
     {
         $twitterCard = new TwitterCard($this->opengraph);
 
@@ -104,10 +88,7 @@ class TwitterCardTest extends TestCase
         $this->assertEquals($title, $twitterCard->getTitle());
     }
 
-    /**
-     * @test
-     */
-    public function setterDescription()
+    public function testSetterDescription()
     {
         $twitterCard = new TwitterCard($this->opengraph);
 
@@ -118,10 +99,7 @@ class TwitterCardTest extends TestCase
         $this->assertEquals($description, $twitterCard->getDescription());
     }
 
-    /**
-     * @test
-     */
-    public function setterImage()
+    public function testSetterImage()
     {
         $twitterCard = new TwitterCard($this->opengraph);
 

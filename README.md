@@ -7,7 +7,6 @@
 [![StyleCI](https://github.styleci.io/repos/119894207/shield?branch=master)](https://github.styleci.io/repos/119894207)
 [![Total Downloads](https://poser.pugx.org/umanskyi31/opengraph/downloads)](https://packagist.org/packages/umanskyi31/opengraph)
 [![Latest Stable Version](https://poser.pugx.org/umanskyi31/opengraph/v/stable)](https://packagist.org/packages/umanskyi31/opengraph)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vumanskyi/yii2-opengraph/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vumanskyi/yii2-opengraph/?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
@@ -22,7 +21,7 @@ composer require umanskyi31/opengraph
 or add 
 
 ```
-"umanskyi31/opengraph": "*"
+"umanskyi31/opengraph": "^3.0.0"
 ```
 
 to the require section of your composer.json file.

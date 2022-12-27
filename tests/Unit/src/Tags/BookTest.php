@@ -1,17 +1,14 @@
 <?php
+
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
-use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\OpenGraphConfiguration;
 use umanskyi31\opengraph\Tags\Book;
 
 class BookTest extends TestCase
 {
-    /**
-     * @var OpenGraph
-     */
-    protected $opengraph;
+    protected OpenGraphConfiguration $opengraph;
 
     protected function setUp(): void
     {
@@ -20,10 +17,7 @@ class BookTest extends TestCase
         $this->opengraph = new OpenGraphConfiguration();
     }
 
-    /**
-     * @test
-     */
-    public function setterAuthor()
+    public function testSetterAuthor()
     {
         $book = new Book($this->opengraph);
 
@@ -34,10 +28,7 @@ class BookTest extends TestCase
         $this->assertSame($authors, $book->getAuthor());
     }
 
-    /**
-     * @test
-     */
-    public function setterReleaseDate()
+    public function testSetterReleaseDate()
     {
         $book = new Book($this->opengraph);
 
@@ -48,10 +39,7 @@ class BookTest extends TestCase
         $this->assertEquals($date, $book->getReleaseDate());
     }
 
-    /**
-     * @test
-     */
-    public function setterTag()
+    public function testSetterTag()
     {
         $book = new Book($this->opengraph);
 
@@ -62,10 +50,7 @@ class BookTest extends TestCase
         $this->assertSame($tags, $book->getTag());
     }
 
-    /**
-     * @test
-     */
-    public function setterIsbn()
+    public function testSetterIsbn()
     {
         $book = new Book($this->opengraph);
 

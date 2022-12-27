@@ -29,7 +29,7 @@ use Yii;
  */
 class OpenGraph
 {
-    protected $configuration;
+    protected Configuration $configuration;
 
     /**
      * OpenGraph constructor.
@@ -55,7 +55,7 @@ class OpenGraph
     {
         $tags = $this->configuration->tags();
 
-        if (!array_key_exists($name, $tags)) {
+        if (! array_key_exists($name, $tags)) {
             throw new OpenGraphException(sprintf('The method %s does not exist', $name));
         }
 

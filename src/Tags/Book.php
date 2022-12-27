@@ -1,28 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace umanskyi31\opengraph\Tags;
+
+use umanskyi31\opengraph\Converters\DateTimeToStringConverter;
 
 class Book extends Tag
 {
     /**
-     * @var string[]
-     */
-    protected $author = [];
-
-    /**
      * @var string
      */
-    protected $isbn;
-
-    /**
-     * @var \DateTime
-     */
-    protected $release_date;
+    protected string $isbn;
 
     /**
      * @var string[]
      */
-    protected $tag = [];
+    protected array $tag = [];
+
+    /**
+     * @var string[]
+     */
+    protected array $author = [];
+
+    protected \DateTime $release_date;
 
     /**
      * @param string[] $author
@@ -64,19 +65,11 @@ class Book extends Tag
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getIsbn(): string
     {
         return $this->isbn;
     }
 
-    /**
-     * @param string $isbn
-     *
-     * @return Book
-     */
     public function setIsbn(string $isbn): Book
     {
         $this->isbn = $isbn;
@@ -84,22 +77,14 @@ class Book extends Tag
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getReleaseDate(): \DateTime
     {
-        return new \DateTime($this->release_date);
+        return $this->release_date;
     }
 
-    /**
-     * @param \DateTime $release_date
-     *
-     * @return Book
-     */
     public function setReleaseDate(\DateTime $release_date): Book
     {
-        $this->release_date = $release_date->format('Y-m-d');
+        $this->release_date = $release_date;
 
         return $this;
     }
@@ -116,8 +101,10 @@ class Book extends Tag
             }
 
             $this->getOpenGraph()->render([
-                'property'  => 'book:'.$key,
-                'content'   => $property,
+                'property' => 'book:' . $key,
+                'content' => $property instanceof \DateTimeInterface
+                    ? DateTimeToStringConverter::convert($property)
+                    : $property,
             ]);
         }
 

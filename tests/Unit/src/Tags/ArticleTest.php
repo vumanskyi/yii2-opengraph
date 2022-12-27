@@ -1,17 +1,14 @@
 <?php
+
 namespace umanskyi31\opengraph\test\Unit\src\Tags;
 
 use PHPUnit\Framework\TestCase;
-use umanskyi31\opengraph\OpenGraph;
 use umanskyi31\opengraph\OpenGraphConfiguration;
 use umanskyi31\opengraph\Tags\Article;
 
 class ArticleTest extends TestCase
 {
-    /**
-     * @var OpenGraph
-     */
-    protected $opengraph;
+    protected OpenGraphConfiguration $opengraph;
 
     protected function setUp(): void
     {
@@ -20,10 +17,7 @@ class ArticleTest extends TestCase
         $this->opengraph = new OpenGraphConfiguration();
     }
 
-    /**
-     * @test
-     */
-    public function setterAuthor()
+    public function testSetterAuthor()
     {
         $article = new Article($this->opengraph);
 
@@ -34,26 +28,22 @@ class ArticleTest extends TestCase
         $this->assertSame($authors, $article->getAuthor());
     }
 
-    /**
-     * @test
-     */
-    public function setterDates()
+    public function testSetterDates()
     {
         $article = new Article($this->opengraph);
 
         $date = new \DateTime('2011-01-01');
 
-        $article->setExpirationTime($date)->setModifiedTime($date)->setPublishTime($date);
+        $article->setExpirationTime($date)
+            ->setModifiedTime($date)
+            ->setPublishTime($date);
 
         $this->assertEquals($date, $article->getExpirationTime());
         $this->assertEquals($date, $article->getModifiedTime());
         $this->assertEquals($date, $article->getPublishTime());
     }
 
-    /**
-     * @test
-     */
-    public function setterTags()
+    public function testSetterTags()
     {
         $article = new Article($this->opengraph);
 
@@ -62,13 +52,9 @@ class ArticleTest extends TestCase
         $article->setTag($tags);
 
         $this->assertSame($tags, $article->getTag());
-
     }
 
-    /**
-     * @test
-     */
-    public function setterSection()
+    public function testSetterSection()
     {
         $article = new Article($this->opengraph);
 
@@ -78,5 +64,4 @@ class ArticleTest extends TestCase
 
         $this->assertSame($section, $article->getSection());
     }
-
 }
