@@ -64,7 +64,7 @@ class Music extends Tag
         $validAttributes = $this->validAttrAlbum;
 
         array_map(function ($key) use ($validAttributes) {
-            if (empty($key) || ! in_array($key, $validAttributes)) {
+            if (empty($key) || !in_array($key, $validAttributes)) {
                 throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attrAlbum), $attrAlbum);
@@ -122,11 +122,11 @@ class Music extends Tag
     {
         $this->song = $song;
 
-        if (! empty($attr)) {
+        if (!empty($attr)) {
             $validAttributes = $this->validAttrSong;
 
             array_map(function ($key, $value) use ($validAttributes) {
-                if (! in_array($key, $validAttributes)) {
+                if (!in_array($key, $validAttributes)) {
                     throw new OpenGraphException('Invalid values', 500);
                 }
             }, array_keys($attr), $attr);
@@ -149,7 +149,7 @@ class Music extends Tag
 
             $this->getOpenGraph()->render([
                 'property' => 'music:'.$key,
-                'content' => $property instanceof \DateTimeInterface
+                'content'  => $property instanceof \DateTimeInterface
                     ? DateTimeToStringConverter::convert($property)
                     : $property,
             ]);

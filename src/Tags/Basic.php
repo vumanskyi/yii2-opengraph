@@ -129,7 +129,7 @@ class Basic extends Tag
 
             $this->getOpenGraph()->render([
                 'property' => self::OG_PREFIX.$key,
-                'content' => $property,
+                'content'  => $property,
             ]);
         }
 

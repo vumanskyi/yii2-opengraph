@@ -101,8 +101,8 @@ class Book extends Tag
             }
 
             $this->getOpenGraph()->render([
-                'property' => 'book:' . $key,
-                'content' => $property instanceof \DateTimeInterface
+                'property' => 'book:'.$key,
+                'content'  => $property instanceof \DateTimeInterface
                     ? DateTimeToStringConverter::convert($property)
                     : $property,
             ]);
