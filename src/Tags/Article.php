@@ -133,7 +133,7 @@ class Article extends Tag
 
             $this->getOpenGraph()->render([
                 'property' => 'article:'.$key,
-                'content' => $property instanceof \DateTimeInterface
+                'content'  => $property instanceof \DateTimeInterface
                     ? DateTimeToStringConverter::convert($property)
                     : $property,
             ]);

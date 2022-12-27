@@ -33,7 +33,7 @@ abstract class Tag
 
             $this->getOpenGraph()->render([
                 'property' => $property,
-                'content' => $value,
+                'content'  => $value,
             ]);
         }
     }

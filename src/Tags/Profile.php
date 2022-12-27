@@ -53,7 +53,7 @@ class Profile extends Tag
 
     public function setGender(string $gender): Profile
     {
-        if (! $this->isValidGender($gender)) {
+        if (!$this->isValidGender($gender)) {
             throw new OpenGraphException('Invalid values', 500);
         }
 
@@ -91,7 +91,7 @@ class Profile extends Tag
             }
 
             $this->getOpenGraph()->render([
-                'name' => 'profile:' . $key,
+                'name'    => 'profile:'.$key,
                 'content' => $property,
             ]);
         }

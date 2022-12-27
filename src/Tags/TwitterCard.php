@@ -78,7 +78,7 @@ class TwitterCard extends Tag
 
     public function setCard(string $card): TwitterCard
     {
-        if (! $this->isValidCart($card)) {
+        if (!$this->isValidCart($card)) {
             throw new OpenGraphException('Invalid values', 500);
         }
 
@@ -132,7 +132,7 @@ class TwitterCard extends Tag
             }
 
             $this->getOpenGraph()->render([
-                'name' => self::PREFIX.$key,
+                'name'    => self::PREFIX.$key,
                 'content' => $property,
             ]);
         }

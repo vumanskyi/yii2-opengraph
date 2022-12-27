@@ -37,7 +37,7 @@ class Image extends Tag
         $validAttributes = $this->validAttributes;
 
         array_map(function ($key) use ($validAttributes) {
-            if (empty($key) || ! in_array($key, $validAttributes)) {
+            if (empty($key) || !in_array($key, $validAttributes)) {
                 throw new OpenGraphException('Invalid values', 500);
             }
         }, array_keys($attributes), $attributes);
@@ -55,10 +55,10 @@ class Image extends Tag
     public function render()
     {
         $this->getOpenGraph()->render([
-            'property' => self::OG_PREFIX . 'image',
-            'content' => $this->getUrl(),
+            'property' => self::OG_PREFIX.'image',
+            'content'  => $this->getUrl(),
         ]);
 
-        $this->additionalRender($this->getAttributes(), self::OG_PREFIX . 'image:', true);
+        $this->additionalRender($this->getAttributes(), self::OG_PREFIX.'image:', true);
     }
 }
