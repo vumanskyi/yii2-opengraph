@@ -63,11 +63,11 @@ class Music extends Tag
     {
         $validAttributes = $this->validAttrAlbum;
 
-        array_map(function ($key) use ($validAttributes) {
+        foreach (array_keys($attrAlbum) as $key) {
             if (empty($key) || !in_array($key, $validAttributes)) {
                 throw new OpenGraphException('Invalid values', 500);
             }
-        }, array_keys($attrAlbum), $attrAlbum);
+        }
 
         $this->attrAlbum = $attrAlbum;
 
@@ -125,11 +125,11 @@ class Music extends Tag
         if (!empty($attr)) {
             $validAttributes = $this->validAttrSong;
 
-            array_map(function ($key, $value) use ($validAttributes) {
+            foreach (array_keys($attr) as $key) {
                 if (!in_array($key, $validAttributes)) {
                     throw new OpenGraphException('Invalid values', 500);
                 }
-            }, array_keys($attr), $attr);
+            }
 
             $this->attrSong = $attr;
         }

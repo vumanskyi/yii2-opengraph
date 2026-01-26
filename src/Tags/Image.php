@@ -20,7 +20,7 @@ class Image extends Tag
         'alt',
     ];
 
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
@@ -36,11 +36,11 @@ class Image extends Tag
     {
         $validAttributes = $this->validAttributes;
 
-        array_map(function ($key) use ($validAttributes) {
+        foreach (array_keys($attributes) as $key) {
             if (empty($key) || !in_array($key, $validAttributes)) {
                 throw new OpenGraphException('Invalid values', 500);
             }
-        }, array_keys($attributes), $attributes);
+        }
 
         $this->attributes = $attributes;
 

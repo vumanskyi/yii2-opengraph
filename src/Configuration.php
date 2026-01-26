@@ -10,11 +10,11 @@ namespace umanskyi31\opengraph;
  *
  * @author Vladyslav Umanskyi <vladumanskyi@gmail.com>
  *
- * @version 3.0.0
+ * @version 3.0.1
  */
 interface Configuration
 {
-    public const VERSION = '3.0.0';
+    public const VERSION = '3.0.1';
 
     /**
      * Consist all available tags.

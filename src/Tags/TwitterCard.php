@@ -78,7 +78,7 @@ class TwitterCard extends Tag
 
     public function setCard(string $card): TwitterCard
     {
-        if (!$this->isValidCart($card)) {
+        if (!$this->isValidCard($card)) {
             throw new OpenGraphException('Invalid values', 500);
         }
 
@@ -117,7 +117,7 @@ class TwitterCard extends Tag
         return $this->image;
     }
 
-    protected function isValidCart(string $card): bool
+    protected function isValidCard(string $card): bool
     {
         return in_array(strtolower($card), $this->validCard);
     }
@@ -127,7 +127,7 @@ class TwitterCard extends Tag
         $properties = get_object_vars($this);
 
         foreach ($properties as $key => $property) {
-            if (in_array($key, ['openGraph', 'validCard']) || empty($property)) {
+            if (in_array($key, ['configuration', 'validCard']) || empty($property)) {
                 continue;
             }
 

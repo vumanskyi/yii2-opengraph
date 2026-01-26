@@ -1,5 +1,13 @@
 CHANGE LOG
 ==========
+## v3.0.1 (26/01/2026)
+
+* Fixed typo: `isValidCart` → `isValidCard` in TwitterCard
+* Fixed validation logic: replaced incorrect `array_map` usage with proper `foreach` loops in Image, Video, Audio, and Music classes
+* Fixed property filtering in TwitterCard render method (`openGraph` → `configuration`)
+* Fixed PHP version requirement syntax in composer.json
+* Updated Yii2 requirement to ~2.0.49
+
 ## v3.0.0 (27/12/2022)
 
 * Fix issues
